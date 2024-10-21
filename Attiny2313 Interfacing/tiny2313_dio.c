@@ -1,4 +1,4 @@
-#include "tiny4313_dio.h"
+#include "tiny2313_dio.h"
 #include <xc.h>
 
 void setPortBDirection(char mask, char direction) {

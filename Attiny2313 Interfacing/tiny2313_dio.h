@@ -1,10 +1,10 @@
 /* 
- * File:   tiny4313_dio.h
- * Created on October 20, 2024, 11:32 PM
+ * File:   tiny2313_dio.h
+ * Created on October 22, 2024, 00:04 PM
  */
 
-#ifndef TINY4313_DIO_H
-#define	TINY4313_DIO_H
+#ifndef TINY2313_DIO_H
+#define	TINY2313_DIO_H
 
 
 #include <xc.h>
@@ -189,5 +189,5 @@ char readPortD();
  */
 char readPinD(char pinNum);
 
-#endif	/* TINY4313_DIO_H */
+#endif	/* TINY2313_DIO_H */
 
