@@ -5,12 +5,12 @@
 void init_motor(){
     //init timer0 amd timer2
     timer0_OC0_init();
-    initTimer0(TIMER_CTC, CLK01_256);
-    timer0_OC0_selectMode(OC0_CTC_TOGGLE);
+    initTimer0(TIMER_FAST_PWM, CLK01_64); // Fast PWM, clock prescaler 64
+    timer0_OC0_selectMode(OC0_FPWM_CLEAR); // Non-inverted PWM
     
     timer2_OC2_init();
-    initTimer2(TIMER_CTC, CLK2_256);
-    timer2_OC2_selectMode(OC2_CTC_TOGGLE);
+    initTimer2(TIMER_FAST_PWM, CLK2_64); // Fast PWM, clock prescaler 64
+    timer2_OC2_selectMode(OC2_FPWM_CLEAR); // Non-inverted PWM
     
     
     //set the control pins as output
