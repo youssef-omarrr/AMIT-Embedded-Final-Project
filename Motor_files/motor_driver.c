@@ -89,3 +89,14 @@ void move_left(int* x, int* y) {
     OCR2 = *x;  // Set PWM for left motor
     OCR0 = *y;  // Set PWM for right motor
 }
+
+void stop_motor() {
+    setPINB(MOTOR_LEFT_IN1, LOW);
+    setPINB(MOTOR_LEFT_IN2, LOW);
+    setPIND(MOTOR_RIGHT_IN1, LOW);
+    setPIND(MOTOR_RIGHT_IN2, LOW);
+    
+    // Set PWM values to 0 to stop motors
+    OCR2 = 0;
+    OCR0 = 0;
+}

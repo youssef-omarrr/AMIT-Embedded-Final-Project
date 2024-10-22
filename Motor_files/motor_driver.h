@@ -25,6 +25,7 @@ void move_forward  (int* x, int* y);
 void move_backward (int* x, int* y);
 void move_right    (int* x, int* y);
 void move_left     (int* x, int* y);
+void stop_motor();
 
 #endif	/* MOTOR_DRIVER_H */
 
