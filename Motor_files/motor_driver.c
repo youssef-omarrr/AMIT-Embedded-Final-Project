@@ -7,11 +7,12 @@ void init_motor(){
     timer0_OC0_init();
     initTimer0(TIMER_FAST_PWM, CLK01_64); // Fast PWM, clock prescaler 64
     timer0_OC0_selectMode(OC0_FPWM_CLEAR); // Non-inverted PWM
+    OCR0 = 128;  // Set duty cycle (50%)
     
     timer2_OC2_init();
     initTimer2(TIMER_FAST_PWM, CLK2_64); // Fast PWM, clock prescaler 64
     timer2_OC2_selectMode(OC2_FPWM_CLEAR); // Non-inverted PWM
-    
+    OCR2 = 128;  // Set duty cycle (50%)
     
     //set the control pins as output
     setPINB_dir(MOTOR_LEFT_IN1,  OUT);
