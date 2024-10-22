@@ -1,9 +1,9 @@
 #include <avr/io.h>
 #include <stdio.h>
-
 #include "mHEADERS.h"
 #include "MPU6050_light.h"
 #include "motor_driver.h"
+
 
 //init function declaration
 void MPU_func();
@@ -16,7 +16,7 @@ TaskHandle_t Motor_handler = NULL;
 //init semaphore
 SemaphoreHandle_t semph_handle;
 
-//data that will store MPU reading in format: "x(number), y(number)"
+//data that will store MPU reading in format: "x(number), y(number), dir(char)"
 char* data = NULL;
 
 int main() {
@@ -80,7 +80,8 @@ void Motor_func(void* data){
 
             //split data
             int x, y;
-            sscanf(data, "x(%d), y(%d)", &x, &y);
+            char dir;
+            sscanf(data, "x(%d), y(%d), dir(%c)", &x, &y, &dir);
             
             //OCR2 range -> 0:255
             /* write logic to choose in which direction we will move
