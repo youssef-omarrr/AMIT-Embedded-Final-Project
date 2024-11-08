@@ -5,7 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>MY_MPU.h</itemPath>
-      <itemPath>../../EmbeddedC_codes/1/app1.X/MY_UART.h</itemPath>
       <itemPath>freertos/include/atomic.h</itemPath>
       <itemPath>freertos/include/croutine.h</itemPath>
       <itemPath>freertos/include/deprecated_definitions.h</itemPath>
@@ -26,8 +25,9 @@
       <itemPath>freertos/include/stream_buffer.h</itemPath>
       <itemPath>freertos/include/task.h</itemPath>
       <itemPath>freertos/include/timers.h</itemPath>
-      <itemPath>../../EmbeddedC_codes/1/app1.X/DIO.h</itemPath>
-      <itemPath>../../EmbeddedC_codes/1/app1.X/int_to_arr.h</itemPath>
+      <itemPath>int_to_arr.h</itemPath>
+      <itemPath>MY_UART.h</itemPath>
+      <itemPath>myI2C.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -43,7 +43,6 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>MY_MPU.c</itemPath>
-      <itemPath>../../EmbeddedC_codes/1/app1.X/MY_UART.c</itemPath>
       <itemPath>freertos/croutine.c</itemPath>
       <itemPath>freertos/event_groups.c</itemPath>
       <itemPath>freertos/heap_4.c</itemPath>
@@ -53,13 +52,16 @@
       <itemPath>freertos/stream_buffer.c</itemPath>
       <itemPath>freertos/tasks.c</itemPath>
       <itemPath>freertos/timers.c</itemPath>
-      <itemPath>../../EmbeddedC_codes/1/app1.X/DIO.c</itemPath>
-      <itemPath>../../EmbeddedC_codes/1/app1.X/int_to_arr.c</itemPath>
+      <itemPath>MY_UART.c</itemPath>
+      <itemPath>DIO.c</itemPath>
+      <itemPath>myI2C.c</itemPath>
+      <itemPath>mpu_i2c.c</itemPath>
+      <itemPath>int_to_arr.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
     <Elem>../../EmbeddedC_codes/1/app1.X</Elem>
-    <Elem>freertos</Elem>
+    <Elem>.</Elem>
   </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
@@ -72,7 +74,7 @@
         <platformTool>noID</platformTool>
         <languageToolchain>XC8</languageToolchain>
         <languageToolchainVersion>2.46</languageToolchainVersion>
-        <platform>4</platform>
+        <platform>3</platform>
       </toolsSet>
       <packs>
         <pack name="ATmega_DFP" vendor="Microchip" version="3.1.264"/>

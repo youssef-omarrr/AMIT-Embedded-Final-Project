@@ -10,7 +10,7 @@
             <make-dep-projects/>
             <sourceRootList>
                 <sourceRootElem>../../EmbeddedC_codes/1/app1.X</sourceRootElem>
-                <sourceRootElem>freertos</sourceRootElem>
+                <sourceRootElem>.</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
