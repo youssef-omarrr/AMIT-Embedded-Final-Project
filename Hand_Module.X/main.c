@@ -1,9 +1,12 @@
+#define F_CPU 16000000UL
+
 #include <avr/io.h>
 #include <util/delay.h>
 #include <stdio.h>
 #include <math.h>
 #include "MY_MPU.h"
 #include "MY_UART.h"
+#include "mpu_i2c.h"
 
 #define FREQ        250   // Sampling frequency                                                                                                   
 #define SSF_GYRO    65.5  // Sensitivity Scale Factor of the gyro from datasheet                                                                  

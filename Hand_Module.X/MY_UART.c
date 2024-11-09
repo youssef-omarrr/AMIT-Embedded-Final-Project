@@ -29,16 +29,16 @@ void Set_XCK_DIR(char Generation_dir) {
 
 }
 
-char WAIT_UNTIL_UDRisNOT_EMPTY() {
+void WAIT_UNTIL_UDRisNOT_EMPTY() {
 
     while (!(UCSRA & (1 << UDRE)));
 
 }
 
-char WAIT_UNTIL_RX_ALL_SHIFTED() {
+void WAIT_UNTIL_RX_ALL_SHIFTED() {
 
     while (!(UCSRA & (1 << RXC)));
-
+   
 }
 
 void UDREF_INT_EN() {

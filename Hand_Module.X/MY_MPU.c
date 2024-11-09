@@ -1,5 +1,5 @@
 #include "MY_MPU.h"
-#include "myI2C.h"
+#include "mpu_i2c.h"
 #include <util/delay.h>
 
 #define MPU_ADDRESS 0xD0

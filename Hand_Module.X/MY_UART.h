@@ -73,7 +73,7 @@
 void init_UART_Async(int BaudRate,char stopBits ,char RX_or_TX);
 void init_UART_Sync(int BaudRate,char stopBits ,char RX_or_TX,char Generation_dir);
 //void BaudRate_X2_U();
-char WAIT_UNTIL_UDRisNOT_EMPTY();
+void  WAIT_UNTIL_UDRisNOT_EMPTY();
 //void UDREF_INT_EN();
 //void RXF_INT_EN();
 void Set_StopBitsNum_U(char StopBitsNum);
@@ -83,7 +83,7 @@ void SetBaudRate_U(int BaudRate);
 void RX_TX_MODE(char RX_TX);
 void UART_SEND(char data);
 void UART_SEND_STR(char*);
-char WAIT_UNTIL_RX_ALL_SHIFTED();
+void WAIT_UNTIL_RX_ALL_SHIFTED();
 char UART_RECEIVE();
 void Set_XCK_DIR(char Generation_dir);
 

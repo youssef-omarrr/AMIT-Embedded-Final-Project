@@ -353,7 +353,7 @@ char readPort(char portName) {
     default:
         break;
     }
-
+    return 0;
 }
 
 /**
@@ -381,6 +381,7 @@ char readPIN(char portName, char pinNum) {
     default:
         break;
     }
+    return 0;
 
 }
 

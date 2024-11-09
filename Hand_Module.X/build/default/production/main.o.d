@@ -18,7 +18,7 @@ build/default/production/main.o.d build/default/production/main.o: main.c \
  d:\mplabx\xc8\avr\avr\include\stdio.h MY_MPU.h myI2C.h \
  d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\xc.h \
  d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\cci.h \
- d:\mplabx\xc8\avr\avr\include\avr\builtins.h MY_UART.h
+ d:\mplabx\xc8\avr\avr\include\avr\builtins.h MY_UART.h mpu_i2c.h
 
 d:\mplabx\xc8\avr\avr\include\avr\io.h:
 
@@ -65,3 +65,5 @@ d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\cci.h:
 d:\mplabx\xc8\avr\avr\include\avr\builtins.h:
 
 MY_UART.h:
+
+mpu_i2c.h:

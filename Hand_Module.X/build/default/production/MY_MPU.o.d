@@ -14,7 +14,7 @@ build/default/production/MY_MPU.o.d build/default/production/MY_MPU.o: \
  d:\mplabx\xc8\avr\avr\include\avr\lock.h myI2C.h \
  d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\xc.h \
  d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\cci.h \
- d:\mplabx\xc8\avr\avr\include\avr\builtins.h \
+ d:\mplabx\xc8\avr\avr\include\avr\builtins.h mpu_i2c.h \
  d:\mplabx\xc8\avr\avr\include\util\delay.h \
  d:\mplabx\xc8\avr\avr\include\util\delay_basic.h \
  d:\mplabx\xc8\avr\avr\include\math.h
@@ -54,6 +54,8 @@ d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\xc.h:
 d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\cci.h:
 
 d:\mplabx\xc8\avr\avr\include\avr\builtins.h:
+
+mpu_i2c.h:
 
 d:\mplabx\xc8\avr\avr\include\util\delay.h:
 
