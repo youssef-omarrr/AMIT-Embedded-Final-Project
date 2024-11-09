@@ -115,12 +115,10 @@
 #define FIFO_R_W 0x74
 #define WHO_AM_I 0x75
 
-extern float Acc_x, Acc_y, Acc_z, Temperature, Gyro_x, Gyro_y, Gyro_z;
-extern float gyroX_offset, gyroY_offset, gyroZ_offset;
-
 void MPU6050_init(void);
 void MPU_Start_Loc(void);
-void Read_RawValue(void);
-void MPU6050_calibrate(void);
+void Read_RawValue(float acc[3], float gyro[3]);
+void MPU6050_calibrate(float gyro_offset[3]);
+void updateAngles(float acc[3], float gyro[3], float gyro_offset[3]);
 
 #endif /* MPU6050_RES_DEFINE_H_ */

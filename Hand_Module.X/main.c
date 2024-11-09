@@ -38,55 +38,56 @@ float angleX = 0, angleY = 0, angleZ = 0;
 float gyro_angleX = 0, gyro_angleY = 0, gyro_angleZ = 0;
 float acc_angleX = 0, acc_angleY = 0, acc_angleZ = 0;
 
-void updateAngles() {
-    // Gyroscope sensitivity scale factor: 131 LSB/(°/s) for ±250°/s range
-    float Xg = Gyro_x - gyroX_offset;
-    float Yg = Gyro_y - gyroY_offset;
-    float Zg = Gyro_z - gyroZ_offset;
+void updateAngles(float acc[3], float gyro[3], float gyro_offset[3]) {
+    // Adjust gyroscope readings by offset
+    float Xg = gyro[0] - gyro_offset[0];
+    float Yg = gyro[1] - gyro_offset[1];
+    float Zg = gyro[2] - gyro_offset[2];
 
     // Integrate gyro rate to get angle (degrees)
     gyro_angleX += (Xg / (FREQ * SSF_GYRO));
     gyro_angleY += (-Yg / (FREQ * SSF_GYRO));
 
-    // Transfer roll to pitch if IMU has yawed                                                                                                      
-    gyro_angleY += gyro_angleX * sin(Gyro_z * (PI / (FREQ * SSF_GYRO * 180)));
-    gyro_angleX -= gyro_angleY * sin(Gyro_z * (PI / (FREQ * SSF_GYRO * 180)));
+    // Compensate for IMU yaw
+    gyro_angleY += gyro_angleX * sin(gyro[2] * (PI / (FREQ * SSF_GYRO * 180)));
+    gyro_angleX -= gyro_angleY * sin(gyro[2] * (PI / (FREQ * SSF_GYRO * 180)));
 
-    // Calculate total 3D acceleration vector : ?(X² + Y² + Z²)                                                                                     
-    float acc_total_vector = sqrt(pow(Acc_x, 2) + pow(Acc_y, 2) + pow(Acc_z, 2));
+    // Calculate total 3D acceleration vector
+    float acc_total_vector = sqrt(pow(acc[0], 2) + pow(acc[1], 2) + pow(acc[2], 2));
 
-    // To prevent asin to produce a NaN, make sure the input value is within [-1;+1]                                                                
-    if (fabs(Acc_x) < acc_total_vector) {
-        acc_angleX = asin((float) Acc_y / acc_total_vector) * (180 / PI); // asin gives angle in radian. Convert to degree multiplying by 180/pi
+    if (fabs(acc[0]) < acc_total_vector) {
+        acc_angleX = asin((float) acc[1] / acc_total_vector) * (180 / PI);
+    }
+    if (fabs(acc[1]) < acc_total_vector) {
+        acc_angleY = asin((float) acc[0] / acc_total_vector) * (180 / PI);
     }
 
-    if (fabs(Acc_y) < acc_total_vector) {
-        acc_angleY = asin((float) Acc_x / acc_total_vector) * (180 / PI);
-    }
-
-
-
+    // Complementary filter
     gyro_angleX = gyro_angleX * 0.9996 + acc_angleX * 0.0004;
     gyro_angleY = gyro_angleY * 0.9996 + acc_angleY * 0.0004;
 
-
-
-    angleX = angleX* 0.9 + gyro_angleX * 0.1;
+    // Final angles with smoothing
+    angleX = angleX * 0.9 + gyro_angleX * 0.1;
     angleY = angleY * 0.9 + gyro_angleY * 0.1;
-    angleZ = -Gyro_z / SSF_GYRO; // Store the angular motion for this axis                                                            
-
+    angleZ = -gyro[2] / SSF_GYRO;
 }
 
 int main(void) {
     init_UART_Async(BaudRate_9600, _1Sbit, TRANSMIT_ONLY_UART);
     I2C_Init();
+    float acc[3] = {0, 0, 0}; // Accelerometer values
+    float gyro[3] = {0, 0, 0}; // Gyroscope values
+    float gyro_offset[3] = {0, 0, 0}; // Gyroscope offsets
+
+    // Initialize MPU6050
     MPU6050_init();
-    MPU6050_calibrate();
+
+    // Calibrate gyroscope
+    MPU6050_calibrate(gyro_offset);
 
     while (1) {
-        Read_RawValue();
-        updateAngles();
-
+        Read_RawValue(acc, gyro); // Read values into acc and gyro arrays
+        updateAngles(acc, gyro, gyro_offset); // Update angles based on current readings and offset
         // Send calibrated and integrated gyro angles over UART
         char buffer[30];
         sprintf(buffer, "X Angle: %.2f\tY Angle: %.2f\tZ Angle: %.2f\r\n", angleX, angleY, angleZ);

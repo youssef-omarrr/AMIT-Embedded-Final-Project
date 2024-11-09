@@ -69,36 +69,44 @@ void MPU_Start_Loc() {
     I2C_Repeated_Start(MPU_ADDRESS_READ);
 }
 
-void Read_RawValue() {
+void Read_RawValue(float acc[3], float gyro[3]) {
     MPU_Start_Loc();
-    Acc_x = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack();
-    Acc_y = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack();
-    Acc_z = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack();
-    Temperature = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack();
+    
+    // Store accelerometer readings in acc array
+    acc[0] = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack(); // Acc_x
+    acc[1] = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack(); // Acc_y
+    acc[2] = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack(); // Acc_z
+    
+    // Skip Temperature reading
+    float dummy = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack();
 
-    Gyro_x = (((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack());
-    Gyro_y = (((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack());
-    Gyro_z = (((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Nack());
+    // Store gyroscope readings in gyro array
+    gyro[0] = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack(); // Gyro_x
+    gyro[1] = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Ack(); // Gyro_y
+    gyro[2] = ((int) I2C_Read_Ack() << 8) | (int) I2C_Read_Nack(); // Gyro_z
 
     I2C_Stop();
 }
 
-void MPU6050_calibrate() {
+void MPU6050_calibrate(float gyro_offset[3]) {
     const int num_samples = 1000;
-    long gyroX_total = 0, gyroY_total = 0, gyroZ_total = 0;
+    long gyro_total[3] = {0, 0, 0}; // Temporary variables for summing gyro values
 
     for (int i = 0; i < num_samples; i++) {
-        Read_RawValue();
-        gyroX_total += Gyro_x;
-        gyroY_total += Gyro_y;
-        gyroZ_total += Gyro_z;
-        _delay_ms(3); // small delay between samples
+        float acc[3], gyro[3];
+        Read_RawValue(acc, gyro); // Read raw values into arrays
+        
+        gyro_total[0] += gyro[0];
+        gyro_total[1] += gyro[1];
+        gyro_total[2] += gyro[2];
+        _delay_ms(3); // Small delay between samples
     }
 
     // Calculate average offsets
-    gyroX_offset = gyroX_total / num_samples;
-    gyroY_offset = gyroY_total / num_samples;
-    gyroZ_offset = gyroZ_total / num_samples;
+    gyro_offset[0] = gyro_total[0] / num_samples;
+    gyro_offset[1] = gyro_total[1] / num_samples;
+    gyro_offset[2] = gyro_total[2] / num_samples;
 }
+
 
 
