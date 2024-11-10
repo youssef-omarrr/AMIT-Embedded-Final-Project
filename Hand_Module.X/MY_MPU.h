@@ -115,10 +115,30 @@
 #define FIFO_R_W 0x74
 #define WHO_AM_I 0x75
 
+// MPU Calculations Constants
+#define FREQ        1000    // Sampling frequency 
+                            //should edit the timer in the main to match this                                                                                                  
+
+#define SSF_GYRO    65.5    // Sensitivity Scale Factor of the gyro from datasheet                                                                  
+#define PI  3.14
+
+#define X  0
+#define Y  1
+#define Z  2
+
+// Define a structure to hold all angle-related state
+typedef struct {
+    float angles[3];          // Final filtered angles
+    float gyro_angles[3];     // Integrated gyro angles
+    float acc_angles[3];      // Accelerometer-derived angles
+} AngleState;
+
+
 void MPU6050_init(void);
 void MPU_Start_Loc(void);
 void Read_RawValue(float acc[3], float gyro[3]);
 void MPU6050_calibrate(float gyro_offset[3]);
-void updateAngles(float acc[3], float gyro[3], float gyro_offset[3]);
+void initAngleState(AngleState* state);
+void updateAngles(AngleState* state, const float acc[3], const float gyro[3], const float gyro_offset[3]);
 
 #endif /* MPU6050_RES_DEFINE_H_ */

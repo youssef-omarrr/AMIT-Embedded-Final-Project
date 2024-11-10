@@ -5,10 +5,6 @@
 #define MPU_ADDRESS 0xD0
 #define MPU_ADDRESS_READ 0xD1
 
-float Acc_x, Acc_y, Acc_z, Temperature, Gyro_x, Gyro_y, Gyro_z;
-
-float gyroX_offset = 0, gyroY_offset = 0, gyroZ_offset = 0;
-
 void MPU6050_setSampleRate(uint8_t rate) {
     //Sample Rate = (Gyroscope Output Rate)/(1 + SMPLRT_DIV)
     I2C_Start_Wait(MPU_ADDRESS);
@@ -107,6 +103,54 @@ void MPU6050_calibrate(float gyro_offset[3]) {
     gyro_offset[0] = gyro_total[0] / num_samples;
     gyro_offset[1] = gyro_total[1] / num_samples;
     gyro_offset[2] = gyro_total[2] / num_samples;
+}
+
+// Initialize angle state with default values
+ void initAngleState(AngleState* state) {
+    for(int i = 0; i < 3; i++) {
+        state->angles[i] = 0;
+        state->gyro_angles[i] = 0;
+        state->acc_angles[i] = 0;
+    }
+}
+
+// Update angles based on new sensor readings
+void updateAngles(AngleState* state, const float acc[3], const float gyro[3], const float gyro_offset[3]) {
+    // Adjust gyroscope readings by offset
+    float Xg = gyro[X] - gyro_offset[X];
+    float Yg = gyro[Y] - gyro_offset[Y];
+    float Zg = gyro[Z] - gyro_offset[Z];
+
+    // Integrate gyro rate to get angle (degrees)
+    state->gyro_angles[X] += (Xg / (FREQ * SSF_GYRO));
+    state->gyro_angles[Y] += (Yg / (FREQ * SSF_GYRO));
+
+    // Handle roll-pitch coupling due to yaw
+    float yaw_factor = sin(gyro[Z] * (PI / (FREQ * SSF_GYRO * 180)));
+    state->gyro_angles[Y] += state->gyro_angles[X] * yaw_factor;
+    state->gyro_angles[X] -= state->gyro_angles[Y] * yaw_factor;
+
+    // Calculate total 3D acceleration vector
+    float acc_total_vector = sqrt((acc[X] * acc[X]) + 
+                                (acc[Y] * acc[Y]) + 
+                                (acc[Z] * acc[Z]));
+
+    // Calculate accelerometer angles
+    if (fabs(acc[X]) < acc_total_vector) {
+        state->acc_angles[X] = asin((float)acc[Y] / acc_total_vector) * (180 / PI);
+    }
+    if (fabs(acc[Y]) < acc_total_vector) {
+        state->acc_angles[Y] = asin((float)acc[X] / acc_total_vector) * (180 / PI);
+    }
+
+    // Apply complementary filter
+    state->gyro_angles[X] = state->gyro_angles[X] * 0.96 + state->acc_angles[X] * 0.04;
+    state->gyro_angles[Y] = state->gyro_angles[Y] * 0.96 + state->acc_angles[Y] * 0.04;
+
+    // Apply final smoothing filter
+    state->angles[X] = state->angles[X] * 0.7 + state->gyro_angles[X] * 0.3;
+    state->angles[Y] = state->angles[Y] * 0.7 + state->gyro_angles[Y] * 0.3;
+    state->angles[Z] = -Zg / SSF_GYRO;
 }
 
 
