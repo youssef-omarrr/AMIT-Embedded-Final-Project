@@ -1,4 +1,5 @@
-build/default/production/main.o.d build/default/production/main.o: main.c \
+build/default/production/My_TimerCounter.o.d \
+ build/default/production/My_TimerCounter.o: My_TimerCounter.c \
  d:\mplabx\xc8\avr\avr\include\avr\io.h \
  d:\mplabx\xc8\avr\avr\include\avr\sfr_defs.h \
  d:\mplabx\xc8\avr\avr\include\inttypes.h \
@@ -14,12 +15,10 @@ build/default/production/main.o.d build/default/production/main.o: main.c \
  d:\mplabx\xc8\avr\avr\include\avr\lock.h \
  d:\mplabx\xc8\avr\avr\include\util\delay.h \
  d:\mplabx\xc8\avr\avr\include\util\delay_basic.h \
- d:\mplabx\xc8\avr\avr\include\math.h \
- d:\mplabx\xc8\avr\avr\include\stdio.h MY_MPU.h myI2C.h \
+ d:\mplabx\xc8\avr\avr\include\math.h My_TimerCounter.h \
  d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\xc.h \
  d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\cci.h \
- d:\mplabx\xc8\avr\avr\include\avr\builtins.h MY_UART.h mpu_i2c.h \
- My_TimerCounter.h
+ d:\mplabx\xc8\avr\avr\include\avr\builtins.h DIO.h
 
 d:\mplabx\xc8\avr\avr\include\avr\io.h:
 
@@ -53,11 +52,7 @@ d:\mplabx\xc8\avr\avr\include\util\delay_basic.h:
 
 d:\mplabx\xc8\avr\avr\include\math.h:
 
-d:\mplabx\xc8\avr\avr\include\stdio.h:
-
-MY_MPU.h:
-
-myI2C.h:
+My_TimerCounter.h:
 
 d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\xc.h:
 
@@ -65,8 +60,4 @@ d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\cci.h:
 
 d:\mplabx\xc8\avr\avr\include\avr\builtins.h:
 
-MY_UART.h:
-
-mpu_i2c.h:
-
-My_TimerCounter.h:
+DIO.h:

@@ -51,17 +51,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c MY_MPU.c freertos/croutine.c freertos/event_groups.c freertos/heap_4.c freertos/list.c freertos/port.c freertos/queue.c freertos/stream_buffer.c freertos/tasks.c freertos/timers.c MY_UART.c DIO.c myI2C.c mpu_i2c.c int_to_arr.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c MY_MPU.c freertos/croutine.c freertos/event_groups.c freertos/heap_4.c freertos/list.c freertos/port.c freertos/queue.c freertos/stream_buffer.c freertos/tasks.c freertos/timers.c MY_UART.c DIO.c myI2C.c mpu_i2c.c int_to_arr.c My_TimerCounter.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/MY_MPU.o ${OBJECTDIR}/freertos/croutine.o ${OBJECTDIR}/freertos/event_groups.o ${OBJECTDIR}/freertos/heap_4.o ${OBJECTDIR}/freertos/list.o ${OBJECTDIR}/freertos/port.o ${OBJECTDIR}/freertos/queue.o ${OBJECTDIR}/freertos/stream_buffer.o ${OBJECTDIR}/freertos/tasks.o ${OBJECTDIR}/freertos/timers.o ${OBJECTDIR}/MY_UART.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/myI2C.o ${OBJECTDIR}/mpu_i2c.o ${OBJECTDIR}/int_to_arr.o
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/MY_MPU.o.d ${OBJECTDIR}/freertos/croutine.o.d ${OBJECTDIR}/freertos/event_groups.o.d ${OBJECTDIR}/freertos/heap_4.o.d ${OBJECTDIR}/freertos/list.o.d ${OBJECTDIR}/freertos/port.o.d ${OBJECTDIR}/freertos/queue.o.d ${OBJECTDIR}/freertos/stream_buffer.o.d ${OBJECTDIR}/freertos/tasks.o.d ${OBJECTDIR}/freertos/timers.o.d ${OBJECTDIR}/MY_UART.o.d ${OBJECTDIR}/DIO.o.d ${OBJECTDIR}/myI2C.o.d ${OBJECTDIR}/mpu_i2c.o.d ${OBJECTDIR}/int_to_arr.o.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.o ${OBJECTDIR}/MY_MPU.o ${OBJECTDIR}/freertos/croutine.o ${OBJECTDIR}/freertos/event_groups.o ${OBJECTDIR}/freertos/heap_4.o ${OBJECTDIR}/freertos/list.o ${OBJECTDIR}/freertos/port.o ${OBJECTDIR}/freertos/queue.o ${OBJECTDIR}/freertos/stream_buffer.o ${OBJECTDIR}/freertos/tasks.o ${OBJECTDIR}/freertos/timers.o ${OBJECTDIR}/MY_UART.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/myI2C.o ${OBJECTDIR}/mpu_i2c.o ${OBJECTDIR}/int_to_arr.o ${OBJECTDIR}/My_TimerCounter.o
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.o.d ${OBJECTDIR}/MY_MPU.o.d ${OBJECTDIR}/freertos/croutine.o.d ${OBJECTDIR}/freertos/event_groups.o.d ${OBJECTDIR}/freertos/heap_4.o.d ${OBJECTDIR}/freertos/list.o.d ${OBJECTDIR}/freertos/port.o.d ${OBJECTDIR}/freertos/queue.o.d ${OBJECTDIR}/freertos/stream_buffer.o.d ${OBJECTDIR}/freertos/tasks.o.d ${OBJECTDIR}/freertos/timers.o.d ${OBJECTDIR}/MY_UART.o.d ${OBJECTDIR}/DIO.o.d ${OBJECTDIR}/myI2C.o.d ${OBJECTDIR}/mpu_i2c.o.d ${OBJECTDIR}/int_to_arr.o.d ${OBJECTDIR}/My_TimerCounter.o.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/MY_MPU.o ${OBJECTDIR}/freertos/croutine.o ${OBJECTDIR}/freertos/event_groups.o ${OBJECTDIR}/freertos/heap_4.o ${OBJECTDIR}/freertos/list.o ${OBJECTDIR}/freertos/port.o ${OBJECTDIR}/freertos/queue.o ${OBJECTDIR}/freertos/stream_buffer.o ${OBJECTDIR}/freertos/tasks.o ${OBJECTDIR}/freertos/timers.o ${OBJECTDIR}/MY_UART.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/myI2C.o ${OBJECTDIR}/mpu_i2c.o ${OBJECTDIR}/int_to_arr.o
+OBJECTFILES=${OBJECTDIR}/main.o ${OBJECTDIR}/MY_MPU.o ${OBJECTDIR}/freertos/croutine.o ${OBJECTDIR}/freertos/event_groups.o ${OBJECTDIR}/freertos/heap_4.o ${OBJECTDIR}/freertos/list.o ${OBJECTDIR}/freertos/port.o ${OBJECTDIR}/freertos/queue.o ${OBJECTDIR}/freertos/stream_buffer.o ${OBJECTDIR}/freertos/tasks.o ${OBJECTDIR}/freertos/timers.o ${OBJECTDIR}/MY_UART.o ${OBJECTDIR}/DIO.o ${OBJECTDIR}/myI2C.o ${OBJECTDIR}/mpu_i2c.o ${OBJECTDIR}/int_to_arr.o ${OBJECTDIR}/My_TimerCounter.o
 
 # Source Files
-SOURCEFILES=main.c MY_MPU.c freertos/croutine.c freertos/event_groups.c freertos/heap_4.c freertos/list.c freertos/port.c freertos/queue.c freertos/stream_buffer.c freertos/tasks.c freertos/timers.c MY_UART.c DIO.c myI2C.c mpu_i2c.c int_to_arr.c
+SOURCEFILES=main.c MY_MPU.c freertos/croutine.c freertos/event_groups.c freertos/heap_4.c freertos/list.c freertos/port.c freertos/queue.c freertos/stream_buffer.c freertos/tasks.c freertos/timers.c MY_UART.c DIO.c myI2C.c mpu_i2c.c int_to_arr.c My_TimerCounter.c
 
 
 
@@ -184,6 +184,12 @@ ${OBJECTDIR}/int_to_arr.o: int_to_arr.c  .generated_files/flags/default/a71b6405
 	@${RM} ${OBJECTDIR}/int_to_arr.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/int_to_arr.o.d" -MT "${OBJECTDIR}/int_to_arr.o.d" -MT ${OBJECTDIR}/int_to_arr.o -o ${OBJECTDIR}/int_to_arr.o int_to_arr.c 
 	
+${OBJECTDIR}/My_TimerCounter.o: My_TimerCounter.c  .generated_files/flags/default/9d8fc9f1ac9f4e4afe4df7a0c6a4655e45e66862 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/My_TimerCounter.o.d 
+	@${RM} ${OBJECTDIR}/My_TimerCounter.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1 -g -DDEBUG  -gdwarf-2  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/My_TimerCounter.o.d" -MT "${OBJECTDIR}/My_TimerCounter.o.d" -MT ${OBJECTDIR}/My_TimerCounter.o -o ${OBJECTDIR}/My_TimerCounter.o My_TimerCounter.c 
+	
 else
 ${OBJECTDIR}/main.o: main.c  .generated_files/flags/default/2c14a453f73771969d8784823c5150ddd888ff17 .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
 	@${MKDIR} "${OBJECTDIR}" 
@@ -280,6 +286,12 @@ ${OBJECTDIR}/int_to_arr.o: int_to_arr.c  .generated_files/flags/default/b3a2393a
 	@${RM} ${OBJECTDIR}/int_to_arr.o.d 
 	@${RM} ${OBJECTDIR}/int_to_arr.o 
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/int_to_arr.o.d" -MT "${OBJECTDIR}/int_to_arr.o.d" -MT ${OBJECTDIR}/int_to_arr.o -o ${OBJECTDIR}/int_to_arr.o int_to_arr.c 
+	
+${OBJECTDIR}/My_TimerCounter.o: My_TimerCounter.c  .generated_files/flags/default/6a9347c6d0e80976a453a4d30a9b71f44bec453f .generated_files/flags/default/da39a3ee5e6b4b0d3255bfef95601890afd80709
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/My_TimerCounter.o.d 
+	@${RM} ${OBJECTDIR}/My_TimerCounter.o 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -x c -D__$(MP_PROCESSOR_OPTION)__   -mdfp="${DFP_DIR}/xc8"  -Wl,--gc-sections -O1 -ffunction-sections -fdata-sections -fshort-enums -fno-common -funsigned-char -funsigned-bitfields -Wall -DXPRJ_default=$(CND_CONF)  $(COMPARISON_BUILD)  -gdwarf-3 -mno-const-data-in-progmem     -MD -MP -MF "${OBJECTDIR}/My_TimerCounter.o.d" -MT "${OBJECTDIR}/My_TimerCounter.o.d" -MT ${OBJECTDIR}/My_TimerCounter.o -o ${OBJECTDIR}/My_TimerCounter.o My_TimerCounter.c 
 	
 endif
 
