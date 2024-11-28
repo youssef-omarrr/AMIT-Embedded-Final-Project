@@ -30,18 +30,18 @@ void formatSignalMsg(const AngleState* state, char* frame) {
     if (absX > absY) {
         // Forward/Backward movement
         direction = (state->angles[X] > 0) ? 'W' : 'S';
-        speed = (int)((absX * 255) / 90.0);
+        speed = (int) ((absX * 255) / 90.0);
     } else {
         // Left/Right movement
-        direction = (state->angles[Y] > 0) ? 'D' : 'A';  // Assuming +Y is right tilt
-        speed = (int)((absY * 255) / 90.0);
+        direction = (state->angles[Y] > 0) ? 'D' : 'A'; // Assuming +Y is right tilt
+        speed = (int) ((absY * 255) / 90.0);
     }
 
     // Clamp speed between 0 and 255
     speed = (speed > 255) ? 255 : (speed < 0) ? 0 : speed;
 
     // Format the message
-    sprintf(frame, "%c(%d)", direction, speed);
+    sprintf(frame, "-(%c)(%d)-", direction, speed);
 }
 
 int main(void) {
@@ -64,13 +64,16 @@ int main(void) {
 
     // Initialize timer for 1ms intervals
     init_Timer0_WithOCR0(CTC_MODE, TIMER0_MC_CLK_64, 124);
+    int counter = 0;
 
     while (1) {
         Read_RawValue(acc, gyro);
         updateAngles(&angle_state, acc, gyro, gyro_offset);
         //        sendAngleData(&angle_state);
-        formatSignalMsg(&angle_state,frame);
-        UART_SEND_STR(frame);
+        formatSignalMsg(&angle_state, frame);
+        if (++counter % 2) {
+            UART_SEND_STR(frame);
+        }
         Timer0_waitCTC();
     }
 }

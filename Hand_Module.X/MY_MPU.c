@@ -200,7 +200,7 @@ void updateAngles(AngleState* state, const float acc[3], const float gyro[3], co
         state->acc_angles[Y] = asin((float)acc[X] / acc_total_vector) * (180 / PI);
     }
     
-    // Apply complementary filter (96% gyro, 4% accelerometer)
+    // Sensor Fusion:Apply complementary filter (96% gyro, 4% accelerometer)
     for(int i = 0; i < 2; i++) {
         state->gyro_angles[i] = state->gyro_angles[i] * 0.96 + state->acc_angles[i] * 0.04;
     }
