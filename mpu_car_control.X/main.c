@@ -67,8 +67,6 @@ static int extract_number(const char *str, int start_pos) {
     return result;
 }
 
-// (d)(255)
-
 // parsing the data
 
 static uint8_t parse_mpu_data(const char *data, MotorData_t *motor_data) {
@@ -85,7 +83,7 @@ static uint8_t parse_mpu_data(const char *data, MotorData_t *motor_data) {
             if (direction == 'w' || direction == 's' ||
                 direction == 'a' || direction == 'd') { // bt2aked en ely wasal 7aga mn wasd
 
-                //                //el speed mapped hena ha
+                // el speed mapped hena ha
                 if (speed < 30) speed = 0;
                 if (speed > 255) speed = 255;
 
@@ -99,45 +97,51 @@ static uint8_t parse_mpu_data(const char *data, MotorData_t *motor_data) {
 }
 
 int main(void) {
-#if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega328__)
-    SPH = (uint8_t) ((RAMEND) >> 8);
-    SPL = (uint8_t) (RAMEND);
-#endif
-
-    init_hardware();
+    initUART(9600, BOTH, ASYNCH);
     initLCD4();
-    LCD4_CLEAR();
+    LCD4_data_str("ALI was here");
+    MotorData_t motorData;
+    char mpu_data[MPU_DATA_MAX_LEN];
+    while (1) {
 
-    // Create queue
-    xMotorQueue = xQueueCreate(MOTOR_QUEUE_LENGTH, sizeof(MotorData_t));
-    if (xMotorQueue == NULL) {
-                UART_sen_str("Queue creation failed\r\n");
-        while (1);
+        // Simulate MPU data eb2a 4ylha we 7ot el data ely gaya mn el MPU ya magd
+        // bnafs el format ha
+        //        strcpy(mpu_data, "-(d)(50)-");
+
+        char temp[1];
+        mpu_data[0] = '\0';
+
+        //loop until start bit
+        do {
+            temp[0] = UART_receive();
+        } while (temp[0] != '-');
+
+        // -(w)(255)-(w)(255)-(w)(255)-(w)(255)-(w)(255)
+        do {
+            if (strlen(mpu_data) < MPU_DATA_MAX_LEN - 1) {
+                strcat(mpu_data, temp);
+            }
+            temp[0] = UART_receive();
+        } while (temp[0] != '-');
+
+
+        if (parse_mpu_data(mpu_data, &motorData)) {
+            LCD4_data_str("Data parsed: "); //momken t4yl kol el uart send str ana 7atethom 34an atest
+            LCD4_data(motorData.direction);
+            LCD4_data_num(motorData.speed);
+            LCD4_CLEAR();
+        } else {
+            LCD4_CLEAR();
+            LCD4_data_str("Parse failed\r\n");
+        }
+
     }
 
-        UART_sen_str("Queue created successfully\r\n");
 
-    // Create tasks
-    if (xTaskCreate(MPU_Task, "MPU", MPU_TASK_STACK, NULL, 2, NULL) != pdPASS) {
-                LCD4_data_str("MPU task creation failed\r\n");
-        while (1);
-    }
-
-    if (xTaskCreate(Motor_Task, "Motor", MOTOR_TASK_STACK, NULL, 1, NULL) != pdPASS) {
-                LCD4_data_str("Motor task creation failed\r\n");
-        while (1);
-    }
-
-    //    UART_sen_str("Tasks created successfully\r\n");
-
-    vTaskStartScheduler();
-
-    while (1);
     return 0;
 }
 
 static void init_hardware(void) {
-    initUART(9600, TRANSMITTER, ASYNCH);
     init_motor();
 }
 
@@ -148,7 +152,7 @@ static void MPU_Task(void *pvParameters) {
     // Initial delay to allow system to stabilize
     vTaskDelay(pdMS_TO_TICKS(100));
 
-    UART_sen_str("MPU Task started\r\n");
+    LCD4_data_str("MPU Task started\r\n");
 
     while (1) {
         // Simulate MPU data eb2a 4ylha we 7ot el data ely gaya mn el MPU ya magd
@@ -163,17 +167,17 @@ static void MPU_Task(void *pvParameters) {
             temp[0] = UART_receive();
         } while (temp[0] != '-');
 
-        temp[0] = UART_receive();
-        while (temp[0] != '-') {
+        // -(w)(255)-(w)(255)-(w)(255)-(w)(255)-(w)(255)
+        do {
             if (strlen(mpu_data) < MPU_DATA_MAX_LEN - 1) {
                 strcat(mpu_data, temp);
             }
             temp[0] = UART_receive();
-        }
+        } while (temp[0] != '-');
 
 
         if (parse_mpu_data(mpu_data, &motorData)) {
-            LCD4_data_str("Data parsed: "); //momken t4yl kol el uart send str ana 7atethom 34an atest
+            LCD4_data_str("Data parsed: "); 
             LCD4_data(motorData.direction);
             LCD4_data_num(motorData.speed);
             LCD4_CLEAR();
@@ -181,7 +185,7 @@ static void MPU_Task(void *pvParameters) {
             // Try to send to queue with timeout
             if (xQueueSend(xMotorQueue, (void *) &motorData, pdMS_TO_TICKS(100)) == pdPASS) {
                 LCD4_CLEAR();
-               // LCD4_data_str("Data sent to queue\r\n");
+                // LCD4_data_str("Data sent to queue\r\n");
             } else {
                 LCD4_CLEAR();
                 LCD4_data_str("Queue send failed\r\n");
@@ -191,8 +195,6 @@ static void MPU_Task(void *pvParameters) {
             LCD4_data_str("Parse failed\r\n");
         }
 
-        vTaskDelay(pdMS_TO_TICKS(20)); // el tasks hattkarar kol 20 clock tick m4 kol ma t8yar el etgah ya3ny 5ly balek
-        // bas keda keda el delay s8ayar fa el mafrod n7es enha btet8yar 3ala tol
     }
 }
 
