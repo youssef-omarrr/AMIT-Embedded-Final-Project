@@ -1,185 +1,130 @@
-#define F_CPU 16000000UL 
-
-#include<avr/io.h>
-#include"MY_UART.h"
+#include "MY_UART.h"
 #include "DIO.h"
-#include<util/delay.h>
-#include"int_to_arr.h"
+#include <math.h> 
+#include <stdio.h> 
+#include <string.h>
 
+void reverse(char s[]) {
+    int i, j;
+    char c;
 
-//void BaudRate_X2_U();
+    for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
+        c = s[i];
+        s[i] = s[j];
+        s[j] = c;
+    }
+}
 
-void Set_XCK_DIR(char Generation_dir) {
+// Provided itoa function
+void itoa(int n, char s[]) {
+    int i, sign;
 
-    switch (Generation_dir) {
+    if ((sign = n) < 0) /* record sign */
+        n = -n; /* make n positive */
+    i = 0;
+    do { /* generate digits in reverse order */
+        s[i++] = n % 10 + '0'; /* get next digit */
+    } while ((n /= 10) > 0); /* delete it */
+    if (sign < 0)
+        s[i++] = '-';
+    s[i] = '\0';
+    reverse(s);
+}
 
-        case Slave_clk:
-            setPIN_dir(B, XCK, IN);
+/**
+ * 
+ * @param clk_mode ASYN DOUBLE_SPD_ASYN MASTER_SYN SLAVE_SYN
+ * @param baud  INTEGER
+ */
+void init_uart(char clk_mode, int baud) {
+    int UBRR;
+
+    switch (clk_mode) {//SELECT CLOCK MODE
+        case ASYN:
+            UCSRA &= ~(1 << U2X);
+            UCSRC = (UCSRC | (1 << URSEL)) & (~(1 << UMSEL));
+            _delay_ms(5);
+            UBRR = (F_CPU / 16.0 / baud) - 1;
+            //    SET BAUD RATE
+            UBRRH = UBRR >> 8;
+            UBRRL = UBRR;
             break;
-
-        case Master_clk:
-            setPIN_dir(B, XCK, OUT);
+        case DOUBLE_SPD_ASYN:
+            UCSRA |= (1 << U2X);
+            UCSRC = (UCSRC | (1 << URSEL)) & (~(1 << UMSEL));
+            _delay_ms(5);
+            UBRR = (F_CPU / 8.0 / baud) - 1;
+            //    SET BAUD RATE
+            UBRRH = UBRR >> 8;
+            UBRRL = UBRR;
             break;
-
-        default:
+        case MASTER_SYN:
+            UCSRA &= ~(1 << U2X);
+            UCSRC = (UCSRC | (1 << URSEL)) | (1 << UMSEL);
+            set_pin_dir('B', XCK, OUT);
+            _delay_ms(5);
+            UBRR = (F_CPU / 2.0 / baud) - 1;
+            //    SET BAUD RATE
+            UBRRH = UBRR >> 8;
+            UBRRL = UBRR;
             break;
-
-
+        case SLAVE_SYN:
+            UCSRA &= ~(1 << U2X);
+            UCSRC = (UCSRC | (1 << URSEL)) | (1 << UMSEL);
+            set_pin_dir('B', XCK, IN);
+            _delay_ms(5);
+            //            UBRR = (F_CPU / 2.0 / baud) - 1;
+            //            //    SET BAUD RATE
+            //            UBRRH = UBRR >> 8;
+            //            UBRRL = UBRR;
+            break;
     }
 
+
+    //    SET THE DATA FRAME
+    UCSRC |= (1 << URSEL) | (1 << UCSZ0) | (1 << UCSZ1); // 8-bit data, 1 stop bit
+
+    //    INTERRUPT ENABLE
+    //    UCSRB |= (1 << RXCIE);
+    //    UCSRB |= (1 << TXCIE);
+    //    UCSRB |= (1 << UDRIE);
+
+    //    TX AND RX ENABLE
+    UCSRB |= (1 << TXEN) | (1 << RXEN);
 }
 
-void WAIT_UNTIL_UDRisNOT_EMPTY() {
-
-    while (!(UCSRA & (1 << UDRE)));
-
-}
-
-void WAIT_UNTIL_RX_ALL_SHIFTED() {
-
-    while (!(UCSRA & (1 << RXC)));
-   
-}
-
-void UDREF_INT_EN() {
-
-    UCSRB |= (1 << UDRIE);
-
-}
-
-void RXF_INT_EN() {
-
-    UCSRB |= (1 << RXCIE);
-
-}
-
-void Set_StopBitsNum_U(char StopBitsNum) {
-
-    switch (StopBitsNum) {
-
-        case _1Sbit:
-            UCSRC |= (UCSRC | (1 << URSEL)) & (~(1 << USBS));
-            break;
-
-        case _2Sbit:
-            UCSRC |= ((1 << URSEL) | (1 << USBS));
-            break;
-
-        default:
-            break;
-
-    }
-
-}
-
-void SetBaudRate_U(int BaudRate) {
-
-
-    UBRRL = BaudRate;
-    UBRRH = (BaudRate >> 8);
-
-}
-//void SetDataSize_U(char size);
-
-
-//void SetParityMode_U(char Parity);
-
-void RX_TX_MODE(char RX_TX) {
-
-    UCSRB |= (RX_TX << 3);
-
-}
-
-void init_UART_Async(int BaudRate, char StopBits, char RX_or_TX) {
-
-    short temp = (F_CPU / 16.0 / BaudRate) - 1;
-
-    Set_StopBitsNum_U(StopBits);
-    _delay_us(5);
-
-    SetBaudRate_U(temp);
-    _delay_us(5);
-
-    //    SetParityMode_U(Parity);
-    //    _delay_us(5);
-
-    //    SetDataSize_U(size);
-    //    _delay_us(5);
-
-    RX_TX_MODE(RX_or_TX);
-    _delay_us(5);
-
-    RXF_INT_EN();
-
-}
-
-void init_UART_Sync(int BaudRate, char StopBits, char RX_or_TX, char Generation_dir) {
-
-    short temp = (F_CPU / 2.0 / BaudRate) - 1;
-
-    Set_StopBitsNum_U(StopBits);
-    _delay_us(5);
-
-    SetBaudRate_U(temp);
-    _delay_us(5);
-
-    //    SetParityMode_U(Parity);
-    //    _delay_us(5);
-
-    //    SetDataSize_U(size);
-    //    _delay_us(5);
-
-    RX_TX_MODE(RX_or_TX);
-    _delay_us(5);
-
-    Set_XCK_DIR(Generation_dir);
-    _delay_us(5);
-
-    RXF_INT_EN();
-
-}
-
-void UART_SEND(char data) {
-
-    UCSRA &= ~(1 << TXC);
-
-    WAIT_UNTIL_UDRisNOT_EMPTY();
+/**
+ * 
+ * @param data
+ */
+void uart_send_char(char data) {
+    while (!(UCSRA & (1 << UDRE))); //polling to make sure there isn't an interrupt running
 
     UDR = data;
-
 }
 
-void UART_SEND_STR(char* str) {
-
-    for (int i = 0; str[i] != '\0'; i++) {
-        UART_SEND(str[i]);
-//        _delay_ms(5);
+/**
+ * 
+ * @param pData
+ */
+void uart_send_str(char *pData) {
+    for (int i = 0; pData[i] != '\0'; ++i) {
+        uart_send_char(pData[i]);
+        _delay_ms(10);
     }
-
 }
 
-char UART_RECEIVE() {
-    
-    char status;
+char uart_receive_data() {
+    UCSRB &= ~(1 << RXCIE);
 
-    WAIT_UNTIL_RX_ALL_SHIFTED();
-    
-    status =UCSRA;
-    
-    if(status & ((1<<FE)|(1<<DOR)|(1<<2))) 
-        return -1;
+    while (!(UCSRA & (1 << RXC)));
 
-    return UDR;
-
+    char data = UDR;
+    return data;
 }
 
-void UART_SEND_NUM(int num){
-    
-    char c[11];
-    
-    itoa(num,c);
-    
-    UART_SEND_STR(c);
-    
+void uart_send_num(int num) {
+    char str[16];
+    itoa(num, str);
+    uart_send_str(str);
 }
-

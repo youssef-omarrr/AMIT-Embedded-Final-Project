@@ -18,7 +18,7 @@ static void sendAngleData(const AngleState* state) {
         state->angles[X],
         state->angles[Y],
         state->angles[Z]);
-    UART_SEND_STR(buffer);
+    uart_send_str(buffer);
 }
 
 void formatSignalMsg(const AngleState* state, char* frame) {
@@ -84,7 +84,7 @@ void formatSignalMsg(const AngleState* state, char* frame) {
 
 int main(void) {
     // Initialize communication
-    init_UART_Async(BaudRate_9600, _1Sbit, TRANSMIT_ONLY_UART);
+    init_uart(9600,ASYN);
     I2C_Init();
     // Initialize sensor data arrays
     float acc[3] = {0};
@@ -102,13 +102,13 @@ int main(void) {
 
     // Initialize timer for 1ms intervals
     init_Timer0_WithOCR0(CTC_MODE, TIMER0_MC_CLK_64, 124);
-    sei();
     while (1) {
-        Read_RawValue(acc, gyro);
-        updateAngles(&angle_state, acc, gyro, gyro_offset);
-        //        sendAngleData(&angle_state);
+//        Read_RawValue(acc, gyro);
+//        updateAngles(&angle_state, acc, gyro, gyro_offset);
+        angle_state.angles = [10,20,30]
         formatSignalMsg(&angle_state, frame);
-        UART_SEND_STR(frame);
+
+        uart_send_str(frame);
         Timer0_waitCTC();
     }
 }
