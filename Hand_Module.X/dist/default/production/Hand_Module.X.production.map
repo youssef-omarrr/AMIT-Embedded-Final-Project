@@ -100,6 +100,8 @@ Discarded input sections
                 0x0000000000000000        0xa build/default/production/MY_MPU.o
  .text.MPU6050_setInterruptEnable
                 0x0000000000000000        0xa build/default/production/MY_MPU.o
+ .text.updateAngles
+                0x0000000000000000      0x3dc build/default/production/MY_MPU.o
  .text          0x0000000000000000        0x0 build/default/production/freertos/croutine.o
  .data          0x0000000000000000        0x0 build/default/production/freertos/croutine.o
  .bss           0x0000000000000000        0x0 build/default/production/freertos/croutine.o
@@ -470,25 +472,15 @@ Discarded input sections
  .text          0x0000000000000000        0x0 build/default/production/MY_UART.o
  .data          0x0000000000000000        0x0 build/default/production/MY_UART.o
  .bss           0x0000000000000000        0x0 build/default/production/MY_UART.o
- .text.Set_XCK_DIR
-                0x0000000000000000       0x20 build/default/production/MY_UART.o
- .text.WAIT_UNTIL_RX_ALL_SHIFTED
-                0x0000000000000000        0x6 build/default/production/MY_UART.o
- .text.UDREF_INT_EN
-                0x0000000000000000        0x4 build/default/production/MY_UART.o
- .text.init_UART_Sync
-                0x0000000000000000       0x80 build/default/production/MY_UART.o
- .text.UART_RECEIVE
-                0x0000000000000000       0x12 build/default/production/MY_UART.o
- .text.UART_SEND_NUM
+ .text.uart_receive_data
+                0x0000000000000000        0xa build/default/production/MY_UART.o
+ .text.uart_send_num
                 0x0000000000000000       0x38 build/default/production/MY_UART.o
  .text          0x0000000000000000        0x0 build/default/production/DIO.o
  .data          0x0000000000000000        0x0 build/default/production/DIO.o
  .bss           0x0000000000000000        0x0 build/default/production/DIO.o
  .text.setPort_dir
                 0x0000000000000000       0x60 build/default/production/DIO.o
- .text.setPIN_dir
-                0x0000000000000000       0xf2 build/default/production/DIO.o
  .text.setPort_dirVal
                 0x0000000000000000       0x80 build/default/production/DIO.o
  .text.setPIN   0x0000000000000000       0xf2 build/default/production/DIO.o
@@ -497,16 +489,6 @@ Discarded input sections
  .text.readPIN  0x0000000000000000       0x64 build/default/production/DIO.o
  .text.togglePIN
                 0x0000000000000000       0x68 build/default/production/DIO.o
- .debug_info    0x0000000000000000      0x3e6 build/default/production/DIO.o
- .debug_abbrev  0x0000000000000000       0xc7 build/default/production/DIO.o
- .debug_loc     0x0000000000000000      0x55a build/default/production/DIO.o
- .debug_aranges
-                0x0000000000000000       0x50 build/default/production/DIO.o
- .debug_ranges  0x0000000000000000       0x40 build/default/production/DIO.o
- .debug_line    0x0000000000000000      0x32e build/default/production/DIO.o
- .debug_str     0x0000000000000000       0x17 build/default/production/DIO.o
- .comment       0x0000000000000000       0x30 build/default/production/DIO.o
- .debug_frame   0x0000000000000000       0x84 build/default/production/DIO.o
  .text          0x0000000000000000        0x0 build/default/production/myI2C.o
  .data          0x0000000000000000        0x0 build/default/production/myI2C.o
  .bss           0x0000000000000000        0x0 build/default/production/myI2C.o
@@ -583,6 +565,12 @@ Discarded input sections
                 0x0000000000000000        0x4 build/default/production/My_TimerCounter.o
  .text.initNormalMode_Timer_Counter0
                 0x0000000000000000       0x24 build/default/production/My_TimerCounter.o
+ .text.Timer2_setClk
+                0x0000000000000000       0x16 build/default/production/My_TimerCounter.o
+ .text.Timer2_setMode
+                0x0000000000000000       0x3e build/default/production/My_TimerCounter.o
+ .text.Timer2_INT_EN_TOVF
+                0x0000000000000000        0x8 build/default/production/My_TimerCounter.o
  .text.Timer2_INT_EN_OCM
                 0x0000000000000000        0x8 build/default/production/My_TimerCounter.o
  .text.Timer2_COMP_MODE
@@ -593,6 +581,8 @@ Discarded input sections
                 0x0000000000000000        0x4 build/default/production/My_TimerCounter.o
  .text.init_Timer2_WithOCR2
                 0x0000000000000000       0x52 build/default/production/My_TimerCounter.o
+ .text.initNormalMode_Timer_Counter2
+                0x0000000000000000       0x24 build/default/production/My_TimerCounter.o
  .text.Timer2_INT_DISABLE_OCM
                 0x0000000000000000        0x8 build/default/production/My_TimerCounter.o
  .text.Timer2_INT_DISABLE_TOVF
@@ -663,6 +653,12 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
  .stack.descriptors
                 0x0000000000000000       0x13 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
+ .text.asinf    0x0000000000000000      0x21e d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
+ .comment       0x0000000000000000       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
+ .stack.descriptors.hdr
+                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
  .data          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
  .stack.descriptors
@@ -736,31 +732,68 @@ Discarded input sections
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
  .stack.descriptors
                 0x0000000000000000       0x12 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
+ .text.sinf     0x0000000000000000      0x14e d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
+ .comment       0x0000000000000000       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
+ .stack.descriptors.hdr
+                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
  .text          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
  .data          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
  .stack.descriptors
                 0x0000000000000000       0x13 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
+ .text.sqrtf    0x0000000000000000      0x1ac d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
+ .comment       0x0000000000000000       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
+ .stack.descriptors.hdr
+                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
  .text          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
  .data          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
  .stack.descriptors
                 0x0000000000000000       0x13 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
+ .text.fabsf    0x0000000000000000        0x4 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
+ .comment       0x0000000000000000       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
+ .stack.descriptors.hdr
+                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
  .text          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
  .data          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
  .stack.descriptors
                 0x0000000000000000       0x15 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
+ .text.__cosdf  0x0000000000000000       0xee d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
+ .comment       0x0000000000000000       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
+ .stack.descriptors.hdr
+                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
  .text          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
  .data          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
  .stack.descriptors
                 0x0000000000000000       0x15 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
+ .text.__sindf  0x0000000000000000       0xf2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
+ .comment       0x0000000000000000       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
+ .stack.descriptors.hdr
+                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
  .text          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
  .data          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
  .stack.descriptors
                 0x0000000000000000       0x19 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
+ .text.__rem_pio2f
+                0x0000000000000000       0xe0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
+ .comment       0x0000000000000000       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
+ .stack.descriptors.hdr
+                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
  .data          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
  .stack.descriptors
@@ -873,6 +906,8 @@ Discarded input sections
  .text.libgcc.div
                 0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
  .text.libgcc   0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
+ .text.libgcc.prologue
+                0x0000000000000000       0x38 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
  .text.libgcc.builtins
                 0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
  .text.libgcc.fmul
@@ -887,6 +922,8 @@ Discarded input sections
  .text.libgcc.div
                 0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
  .text.libgcc   0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
+ .text.libgcc.prologue
+                0x0000000000000000       0x36 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
  .text.libgcc.builtins
                 0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
  .text.libgcc.fmul
@@ -912,6 +949,12 @@ Discarded input sections
  .text          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
  .data          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
+ .comment       0x0000000000000000       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
+ .stack.descriptors.hdr
+                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
+ .note.GNU-stack
+                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
+ COMMON         0x0000000000000000        0x2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
  .text          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
  .data          0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
  .bss           0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
@@ -1199,20 +1242,18 @@ END GROUP
                 0x0000000000800060                _edata = .
                 [!provide]                        PROVIDE (__data_end, .)
 
-.bss            0x0000000000800060        0x2
+.bss            0x0000000000800060        0x0
                 [!provide]                        PROVIDE (__bss_start, .)
  *(COMMON)
- COMMON         0x0000000000800060        0x2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
-                0x0000000000800060                __errno_val
                 [!provide]                        PROVIDE (__bss_end, .)
                 0x00000000000000ae                __data_load_start = LOADADDR (.data)
                 0x00000000000000ae                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0000000000800062        0x0
+.noinit         0x0000000000800060        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                        PROVIDE (__noinit_end, .)
-                0x0000000000800062                _end = .
+                0x0000000000800060                _end = .
 
 .eeprom         0x0000000000810000        0x0
  *(.eeprom*)
@@ -1262,95 +1303,70 @@ END GROUP
  .comment       0x000000000000002f       0x30 build/default/production/freertos/port.o
  .comment       0x000000000000002f       0x30 build/default/production/freertos/tasks.o
  .comment       0x000000000000002f       0x30 build/default/production/MY_UART.o
+ .comment       0x000000000000002f       0x30 build/default/production/DIO.o
  .comment       0x000000000000002f       0x30 build/default/production/mpu_i2c.o
  .comment       0x000000000000002f       0x30 build/default/production/My_TimerCounter.o
- .comment       0x000000000000002f       0x2c d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
+ .comment       0x000000000000002f       0x2c d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
                                          0x2d (size before relaxing)
- .comment       0x000000000000005b       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
- .comment       0x000000000000005b       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
- .comment       0x000000000000005b       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
- .comment       0x000000000000005b       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
- .comment       0x000000000000005b       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
- .comment       0x000000000000005b       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
- .comment       0x000000000000005b       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
- .comment       0x000000000000005b       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
  .comment       0x000000000000005b       0x2d d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(_Exit.o)
 
 .stack.descriptors.hdr
-                0x0000000000000000      0x1dc
+                0x0000000000000000      0x16c
  .stack.descriptors.hdr
-                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
+                0x0000000000000000        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
  .stack.descriptors.hdr
-                0x000000000000000e        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                0x000000000000000e        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
  .stack.descriptors.hdr
-                0x000000000000001c        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                0x000000000000001c        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
  .stack.descriptors.hdr
-                0x000000000000002a        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                0x000000000000002a        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
  .stack.descriptors.hdr
-                0x0000000000000038        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                0x0000000000000038        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
  .stack.descriptors.hdr
-                0x0000000000000046        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                0x0000000000000046        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
  .stack.descriptors.hdr
-                0x0000000000000054        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x0000000000000054        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
  .stack.descriptors.hdr
-                0x0000000000000062        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x0000000000000062        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
  .stack.descriptors.hdr
-                0x0000000000000070        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x0000000000000070        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
  .stack.descriptors.hdr
-                0x000000000000007e        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x000000000000007e        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
  .stack.descriptors.hdr
-                0x000000000000008c        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x000000000000008c        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
  .stack.descriptors.hdr
-                0x000000000000009a        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x000000000000009a        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
  .stack.descriptors.hdr
-                0x00000000000000a8        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x00000000000000a8        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
  .stack.descriptors.hdr
-                0x00000000000000b6        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x00000000000000b6        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
  .stack.descriptors.hdr
-                0x00000000000000c4        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x00000000000000c4        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(gesf2.o)
  .stack.descriptors.hdr
-                0x00000000000000d2        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                0x00000000000000d2        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
  .stack.descriptors.hdr
-                0x00000000000000e0        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x00000000000000e0        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
  .stack.descriptors.hdr
-                0x00000000000000ee        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x00000000000000ee        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
  .stack.descriptors.hdr
-                0x00000000000000fc        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
+                0x00000000000000fc        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
  .stack.descriptors.hdr
-                0x000000000000010a        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
+                0x000000000000010a        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
  .stack.descriptors.hdr
-                0x0000000000000118        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
+                0x0000000000000118        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
  .stack.descriptors.hdr
-                0x0000000000000126        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
+                0x0000000000000126        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
  .stack.descriptors.hdr
-                0x0000000000000134        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
+                0x0000000000000134        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
  .stack.descriptors.hdr
-                0x0000000000000142        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
+                0x0000000000000142        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
  .stack.descriptors.hdr
-                0x0000000000000150        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+                0x0000000000000150        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(_Exit.o)
  .stack.descriptors.hdr
-                0x000000000000015e        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
- .stack.descriptors.hdr
-                0x000000000000016c        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
- .stack.descriptors.hdr
-                0x000000000000017a        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
- .stack.descriptors.hdr
-                0x0000000000000188        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
- .stack.descriptors.hdr
-                0x0000000000000196        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
- .stack.descriptors.hdr
-                0x00000000000001a4        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
- .stack.descriptors.hdr
-                0x00000000000001b2        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
- .stack.descriptors.hdr
-                0x00000000000001c0        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(_Exit.o)
- .stack.descriptors.hdr
-                0x00000000000001ce        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x000000000000015e        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
 
 .note.GNU-stack
                 0x0000000000000000        0x0
- .note.GNU-stack
-                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
  .note.GNU-stack
                 0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
  .note.GNU-stack
@@ -1386,21 +1402,7 @@ END GROUP
  .note.GNU-stack
                 0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
  .note.GNU-stack
-                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
- .note.GNU-stack
-                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
- .note.GNU-stack
-                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
- .note.GNU-stack
-                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
- .note.GNU-stack
-                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
- .note.GNU-stack
-                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
- .note.GNU-stack
                 0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
- .note.GNU-stack
-                0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(errno.o)
  .note.GNU-stack
                 0x0000000000000000        0x0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
  .note.GNU-stack
@@ -1424,15 +1426,17 @@ END GROUP
 .debug_aranges  0x0000000000000000      0x518
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000       0x30 build/default/production/main.o
+                0x0000000000000000       0x28 build/default/production/main.o
  .debug_aranges
-                0x0000000000000030       0x80 build/default/production/MY_MPU.o
+                0x0000000000000028       0x80 build/default/production/MY_MPU.o
  .debug_aranges
-                0x00000000000000b0       0x48 build/default/production/freertos/port.o
+                0x00000000000000a8       0x48 build/default/production/freertos/port.o
  .debug_aranges
-                0x00000000000000f8      0x198 build/default/production/freertos/tasks.o
+                0x00000000000000f0      0x198 build/default/production/freertos/tasks.o
  .debug_aranges
-                0x0000000000000290       0x88 build/default/production/MY_UART.o
+                0x0000000000000288       0x40 build/default/production/MY_UART.o
+ .debug_aranges
+                0x00000000000002c8       0x50 build/default/production/DIO.o
  .debug_aranges
                 0x0000000000000318       0x58 build/default/production/mpu_i2c.o
  .debug_aranges
@@ -1441,69 +1445,75 @@ END GROUP
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x6cb4
+.debug_info     0x0000000000000000     0x6cb8
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x4e6 D:/Mplabx/packs/Microchip/ATmega_DFP/3.1.264/xc8/avr/lib/avr5/crtatmega32a.o
- .debug_info    0x00000000000004e6      0x65b build/default/production/main.o
- .debug_info    0x0000000000000b41      0xa96 build/default/production/MY_MPU.o
- .debug_info    0x00000000000015d7      0x4df build/default/production/freertos/port.o
- .debug_info    0x0000000000001ab6     0x2f1f build/default/production/freertos/tasks.o
- .debug_info    0x00000000000049d5      0x8b4 build/default/production/MY_UART.o
- .debug_info    0x0000000000005289      0x3ce build/default/production/mpu_i2c.o
- .debug_info    0x0000000000005657     0x165d build/default/production/My_TimerCounter.o
+ .debug_info    0x00000000000004e6      0x56a build/default/production/main.o
+ .debug_info    0x0000000000000a50      0xa96 build/default/production/MY_MPU.o
+ .debug_info    0x00000000000014e6      0x4df build/default/production/freertos/port.o
+ .debug_info    0x00000000000019c5     0x2f1f build/default/production/freertos/tasks.o
+ .debug_info    0x00000000000048e4      0x5c3 build/default/production/MY_UART.o
+ .debug_info    0x0000000000004ea7      0x3e6 build/default/production/DIO.o
+ .debug_info    0x000000000000528d      0x3ce build/default/production/mpu_i2c.o
+ .debug_info    0x000000000000565b     0x165d build/default/production/My_TimerCounter.o
 
-.debug_abbrev   0x0000000000000000     0x1214
+.debug_abbrev   0x0000000000000000     0x1293
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x4a3 D:/Mplabx/packs/Microchip/ATmega_DFP/3.1.264/xc8/avr/lib/avr5/crtatmega32a.o
- .debug_abbrev  0x00000000000004a3      0x14c build/default/production/main.o
- .debug_abbrev  0x00000000000005ef      0x1e8 build/default/production/MY_MPU.o
- .debug_abbrev  0x00000000000007d7      0x157 build/default/production/freertos/port.o
- .debug_abbrev  0x000000000000092e      0x379 build/default/production/freertos/tasks.o
- .debug_abbrev  0x0000000000000ca7      0x1c0 build/default/production/MY_UART.o
- .debug_abbrev  0x0000000000000e67       0xca build/default/production/mpu_i2c.o
- .debug_abbrev  0x0000000000000f31      0x2e3 build/default/production/My_TimerCounter.o
+ .debug_abbrev  0x00000000000004a3      0x129 build/default/production/main.o
+ .debug_abbrev  0x00000000000005cc      0x1e8 build/default/production/MY_MPU.o
+ .debug_abbrev  0x00000000000007b4      0x157 build/default/production/freertos/port.o
+ .debug_abbrev  0x000000000000090b      0x379 build/default/production/freertos/tasks.o
+ .debug_abbrev  0x0000000000000c84      0x19b build/default/production/MY_UART.o
+ .debug_abbrev  0x0000000000000e1f       0xc7 build/default/production/DIO.o
+ .debug_abbrev  0x0000000000000ee6       0xca build/default/production/mpu_i2c.o
+ .debug_abbrev  0x0000000000000fb0      0x2e3 build/default/production/My_TimerCounter.o
 
-.debug_line     0x0000000000000000     0x2cd3
+.debug_line     0x0000000000000000     0x2f0d
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x116 D:/Mplabx/packs/Microchip/ATmega_DFP/3.1.264/xc8/avr/lib/avr5/crtatmega32a.o
- .debug_line    0x0000000000000116      0x216 build/default/production/main.o
- .debug_line    0x000000000000032c      0x34c build/default/production/MY_MPU.o
- .debug_line    0x0000000000000678      0x26c build/default/production/freertos/port.o
- .debug_line    0x00000000000008e4     0x1457 build/default/production/freertos/tasks.o
- .debug_line    0x0000000000001d3b      0x2f9 build/default/production/MY_UART.o
- .debug_line    0x0000000000002034      0x28d build/default/production/mpu_i2c.o
- .debug_line    0x00000000000022c1      0xa12 build/default/production/My_TimerCounter.o
+ .debug_line    0x0000000000000116      0x1ee build/default/production/main.o
+ .debug_line    0x0000000000000304      0x34c build/default/production/MY_MPU.o
+ .debug_line    0x0000000000000650      0x26c build/default/production/freertos/port.o
+ .debug_line    0x00000000000008bc     0x1457 build/default/production/freertos/tasks.o
+ .debug_line    0x0000000000001d13      0x22d build/default/production/MY_UART.o
+ .debug_line    0x0000000000001f40      0x32e build/default/production/DIO.o
+ .debug_line    0x000000000000226e      0x28d build/default/production/mpu_i2c.o
+ .debug_line    0x00000000000024fb      0xa12 build/default/production/My_TimerCounter.o
 
-.debug_frame    0x0000000000000000      0xeb8
+.debug_frame    0x0000000000000000      0xe74
  *(.debug_frame)
- .debug_frame   0x0000000000000000       0xb4 build/default/production/main.o
- .debug_frame   0x00000000000000b4      0x1d4 build/default/production/MY_MPU.o
- .debug_frame   0x0000000000000288       0x74 build/default/production/freertos/port.o
- .debug_frame   0x00000000000002fc      0x62c build/default/production/freertos/tasks.o
- .debug_frame   0x0000000000000928      0x13c build/default/production/MY_UART.o
- .debug_frame   0x0000000000000a64       0xa4 build/default/production/mpu_i2c.o
- .debug_frame   0x0000000000000b08      0x3b0 build/default/production/My_TimerCounter.o
+ .debug_frame   0x0000000000000000       0x9c build/default/production/main.o
+ .debug_frame   0x000000000000009c      0x1d4 build/default/production/MY_MPU.o
+ .debug_frame   0x0000000000000270       0x74 build/default/production/freertos/port.o
+ .debug_frame   0x00000000000002e4      0x62c build/default/production/freertos/tasks.o
+ .debug_frame   0x0000000000000910       0x8c build/default/production/MY_UART.o
+ .debug_frame   0x000000000000099c       0x84 build/default/production/DIO.o
+ .debug_frame   0x0000000000000a20       0xa4 build/default/production/mpu_i2c.o
+ .debug_frame   0x0000000000000ac4      0x3b0 build/default/production/My_TimerCounter.o
 
-.debug_str      0x0000000000000000      0x5f4
+.debug_str      0x0000000000000000      0x5a2
  *(.debug_str)
  .debug_str     0x0000000000000000      0x196 D:/Mplabx/packs/Microchip/ATmega_DFP/3.1.264/xc8/avr/lib/avr5/crtatmega32a.o
- .debug_str     0x0000000000000196       0xb2 build/default/production/main.o
- .debug_str     0x0000000000000248       0x5c build/default/production/MY_MPU.o
- .debug_str     0x00000000000002a4       0x26 build/default/production/freertos/port.o
- .debug_str     0x00000000000002ca      0x29a build/default/production/freertos/tasks.o
- .debug_str     0x0000000000000564       0x35 build/default/production/MY_UART.o
- .debug_str     0x0000000000000599       0x1b build/default/production/mpu_i2c.o
- .debug_str     0x00000000000005b4       0x40 build/default/production/My_TimerCounter.o
+ .debug_str     0x0000000000000196       0x73 build/default/production/main.o
+ .debug_str     0x0000000000000209       0x5c build/default/production/MY_MPU.o
+ .debug_str     0x0000000000000265       0x26 build/default/production/freertos/port.o
+ .debug_str     0x000000000000028b      0x29a build/default/production/freertos/tasks.o
+ .debug_str     0x0000000000000525        0xb build/default/production/MY_UART.o
+ .debug_str     0x0000000000000530       0x17 build/default/production/DIO.o
+ .debug_str     0x0000000000000547       0x1b build/default/production/mpu_i2c.o
+ .debug_str     0x0000000000000562       0x40 build/default/production/My_TimerCounter.o
 
-.debug_loc      0x0000000000000000     0x435c
+.debug_loc      0x0000000000000000     0x46b7
  *(.debug_loc)
  .debug_loc     0x0000000000000000      0x2a6 build/default/production/main.o
  .debug_loc     0x00000000000002a6      0x4a4 build/default/production/MY_MPU.o
  .debug_loc     0x000000000000074a      0x2a0 build/default/production/freertos/port.o
  .debug_loc     0x00000000000009ea     0x22e3 build/default/production/freertos/tasks.o
- .debug_loc     0x0000000000002ccd      0x546 build/default/production/MY_UART.o
- .debug_loc     0x0000000000003213      0x1f5 build/default/production/mpu_i2c.o
- .debug_loc     0x0000000000003408      0xf54 build/default/production/My_TimerCounter.o
+ .debug_loc     0x0000000000002ccd      0x347 build/default/production/MY_UART.o
+ .debug_loc     0x0000000000003014      0x55a build/default/production/DIO.o
+ .debug_loc     0x000000000000356e      0x1f5 build/default/production/mpu_i2c.o
+ .debug_loc     0x0000000000003763      0xf54 build/default/production/My_TimerCounter.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1523,15 +1533,16 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x0000000000000000      0x540
+.debug_ranges   0x0000000000000000      0x530
  *(.debug_ranges)
- .debug_ranges  0x0000000000000000       0x20 build/default/production/main.o
- .debug_ranges  0x0000000000000020       0x70 build/default/production/MY_MPU.o
- .debug_ranges  0x0000000000000090       0x38 build/default/production/freertos/port.o
- .debug_ranges  0x00000000000000c8      0x220 build/default/production/freertos/tasks.o
- .debug_ranges  0x00000000000002e8       0x78 build/default/production/MY_UART.o
- .debug_ranges  0x0000000000000360       0x48 build/default/production/mpu_i2c.o
- .debug_ranges  0x00000000000003a8      0x198 build/default/production/My_TimerCounter.o
+ .debug_ranges  0x0000000000000000       0x18 build/default/production/main.o
+ .debug_ranges  0x0000000000000018       0x70 build/default/production/MY_MPU.o
+ .debug_ranges  0x0000000000000088       0x38 build/default/production/freertos/port.o
+ .debug_ranges  0x00000000000000c0      0x220 build/default/production/freertos/tasks.o
+ .debug_ranges  0x00000000000002e0       0x30 build/default/production/MY_UART.o
+ .debug_ranges  0x0000000000000310       0x40 build/default/production/DIO.o
+ .debug_ranges  0x0000000000000350       0x48 build/default/production/mpu_i2c.o
+ .debug_ranges  0x0000000000000398      0x198 build/default/production/My_TimerCounter.o
 
 .debug_macro
  *(.debug_macro)
@@ -1544,526 +1555,415 @@ LOAD data_init
  .note.gnu.avr.deviceinfo
                 0x0000000000000000       0x3c D:/Mplabx/packs/Microchip/ATmega_DFP/3.1.264/xc8/avr/lib/avr5/crtatmega32a.o
 
-.bss.send_flag  0x0000000000800086        0x2
- .bss.send_flag
-                0x0000000000800086        0x2 build/default/production/main.o
-                0x0000000000800086                send_flag
-
-.bss.counter    0x0000000000800088        0x2
- .bss.counter   0x0000000000800088        0x2 build/default/production/main.o
-
 .bss.uxSchedulerSuspended
-                0x0000000000800096        0x1
+                0x0000000000800090        0x1
  .bss.uxSchedulerSuspended
-                0x0000000000800096        0x1 build/default/production/freertos/tasks.o
+                0x0000000000800090        0x1 build/default/production/freertos/tasks.o
 
 .bss.xNextTaskUnblockTime
-                0x000000000080008a        0x2
+                0x0000000000800084        0x2
  .bss.xNextTaskUnblockTime
-                0x000000000080008a        0x2 build/default/production/freertos/tasks.o
+                0x0000000000800084        0x2 build/default/production/freertos/tasks.o
 
 .bss.xNumOfOverflows
-                0x0000000000800097        0x1
+                0x0000000000800091        0x1
  .bss.xNumOfOverflows
-                0x0000000000800097        0x1 build/default/production/freertos/tasks.o
+                0x0000000000800091        0x1 build/default/production/freertos/tasks.o
 
 .bss.xYieldPending
-                0x0000000000800098        0x1
+                0x0000000000800092        0x1
  .bss.xYieldPending
-                0x0000000000800098        0x1 build/default/production/freertos/tasks.o
+                0x0000000000800092        0x1 build/default/production/freertos/tasks.o
 
 .bss.xPendedTicks
-                0x000000000080008c        0x2
+                0x0000000000800086        0x2
  .bss.xPendedTicks
-                0x000000000080008c        0x2 build/default/production/freertos/tasks.o
+                0x0000000000800086        0x2 build/default/production/freertos/tasks.o
 
 .bss.uxTopReadyPriority
-                0x0000000000800099        0x1
+                0x0000000000800093        0x1
  .bss.uxTopReadyPriority
-                0x0000000000800099        0x1 build/default/production/freertos/tasks.o
+                0x0000000000800093        0x1 build/default/production/freertos/tasks.o
 
 .bss.xTickCount
-                0x000000000080008e        0x2
+                0x0000000000800088        0x2
  .bss.xTickCount
-                0x000000000080008e        0x2 build/default/production/freertos/tasks.o
+                0x0000000000800088        0x2 build/default/production/freertos/tasks.o
 
 .bss.pxOverflowDelayedTaskList
-                0x0000000000800090        0x2
+                0x000000000080008a        0x2
  .bss.pxOverflowDelayedTaskList
-                0x0000000000800090        0x2 build/default/production/freertos/tasks.o
+                0x000000000080008a        0x2 build/default/production/freertos/tasks.o
 
 .bss.pxDelayedTaskList
-                0x0000000000800092        0x2
+                0x000000000080008c        0x2
  .bss.pxDelayedTaskList
-                0x0000000000800092        0x2 build/default/production/freertos/tasks.o
+                0x000000000080008c        0x2 build/default/production/freertos/tasks.o
 
 .bss.pxReadyTasksLists
-                0x0000000000800062       0x24
+                0x0000000000800060       0x24
  .bss.pxReadyTasksLists
-                0x0000000000800062       0x24 build/default/production/freertos/tasks.o
+                0x0000000000800060       0x24 build/default/production/freertos/tasks.o
 
 .bss.pxCurrentTCB
-                0x0000000000800094        0x2
+                0x000000000080008e        0x2
  .bss.pxCurrentTCB
-                0x0000000000800094        0x2 build/default/production/freertos/tasks.o
-                0x0000000000800094                pxCurrentTCB
-
-.text.updateAngles
-                0x00000000000000ae      0x3dc
- .text.updateAngles
-                0x00000000000000ae      0x3dc build/default/production/MY_MPU.o
-                0x00000000000000ae                updateAngles
+                0x000000000080008e        0x2 build/default/production/freertos/tasks.o
+                0x000000000080008e                pxCurrentTCB
 
 .text.xTaskIncrementTick
-                0x000000000000048a      0x23e
+                0x00000000000000ae      0x23e
  .text.xTaskIncrementTick
-                0x000000000000048a      0x23e build/default/production/freertos/tasks.o
-                0x000000000000048a                xTaskIncrementTick
-
-.text.asinf     0x00000000000006c8      0x21e
- .text.asinf    0x00000000000006c8      0x21e d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(asinf.o)
-                0x00000000000006c8                asinf
+                0x00000000000000ae      0x23e build/default/production/freertos/tasks.o
+                0x00000000000000ae                xTaskIncrementTick
 
 .text.formatSignalMsg
-                0x00000000000008e6      0x204
+                0x00000000000002ec      0x204
  .text.formatSignalMsg
-                0x00000000000008e6      0x204 build/default/production/main.o
-                0x00000000000008e6                formatSignalMsg
-
-.text.sqrtf     0x0000000000000aea      0x1ac
- .text.sqrtf    0x0000000000000aea      0x1ac d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sqrtf.o)
-                0x0000000000000aea                sqrtl
-                0x0000000000000aea                sqrtf
-                0x0000000000000aea                sqrt
-
-.text.sinf      0x0000000000000c96      0x14e
- .text.sinf     0x0000000000000c96      0x14e d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(sinf.o)
-                0x0000000000000c96                sinf
+                0x00000000000002ec      0x204 build/default/production/main.o
+                0x00000000000002ec                formatSignalMsg
 
 .text.MPU6050_calibrate
-                0x0000000000000de4      0x13a
+                0x00000000000004f0      0x13a
  .text.MPU6050_calibrate
-                0x0000000000000de4      0x13a build/default/production/MY_MPU.o
-                0x0000000000000de4                MPU6050_calibrate
+                0x00000000000004f0      0x13a build/default/production/MY_MPU.o
+                0x00000000000004f0                MPU6050_calibrate
 
-.text.__sindf   0x0000000000000f1e       0xf2
- .text.__sindf  0x0000000000000f1e       0xf2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__sindf.o)
-                0x0000000000000f1e                __sindf
+.text.init_uart
+                0x000000000000062a      0x12a
+ .text.init_uart
+                0x000000000000062a      0x12a build/default/production/MY_UART.o
+                0x000000000000062a                init_uart
 
-.text.__cosdf   0x0000000000001010       0xee
- .text.__cosdf  0x0000000000001010       0xee d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__cosdf.o)
-                0x0000000000001010                __cosdf
+.text.setPIN_dir
+                0x0000000000000754       0xf2
+ .text.setPIN_dir
+                0x0000000000000754       0xf2 build/default/production/DIO.o
+                0x0000000000000754                setPIN_dir
 
 .text.Read_RawValue
-                0x00000000000010fe       0xe4
+                0x0000000000000846       0xe4
  .text.Read_RawValue
-                0x00000000000010fe       0xe4 build/default/production/MY_MPU.o
-                0x00000000000010fe                Read_RawValue
+                0x0000000000000846       0xe4 build/default/production/MY_MPU.o
+                0x0000000000000846                Read_RawValue
 
-.text.__rem_pio2f
-                0x00000000000011e2       0xe0
- .text.__rem_pio2f
-                0x00000000000011e2       0xe0 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(__rem_pio2f.o)
-                0x00000000000011e2                __rem_pio2f
+.text           0x000000000000092a       0xde
+ .text          0x000000000000092a       0xde d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
+                0x000000000000092a                __divsf3x
+                0x0000000000000952                __divsf3_pse
 
-.text           0x00000000000012c2       0xde
- .text          0x00000000000012c2       0xde d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3x.o)
-                0x00000000000012c2                __divsf3x
-                0x00000000000012ea                __divsf3_pse
+.text           0x0000000000000a08       0xd4
+ .text          0x0000000000000a08       0xd4 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
+                0x0000000000000a08                __mulsf3x
+                0x0000000000000a2e                __mulsf3_pse
 
-.text           0x00000000000013a0       0xd4
- .text          0x00000000000013a0       0xd4 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3x.o)
-                0x00000000000013a0                __mulsf3x
-                0x00000000000013c6                __mulsf3_pse
-
-.text           0x0000000000001474       0xce
- .text          0x0000000000001474       0xce d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
-                0x0000000000001474                __addsf3x
-
-.text.main      0x0000000000001542       0xcc
- .text.main     0x0000000000001542       0xcc build/default/production/main.o
-                0x0000000000001542                main
+.text           0x0000000000000adc       0xce
+ .text          0x0000000000000adc       0xce d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3x.o)
+                0x0000000000000adc                __addsf3x
 
 .text.vTaskSwitchContext
-                0x000000000000160e       0xcc
+                0x0000000000000baa       0xcc
  .text.vTaskSwitchContext
-                0x000000000000160e       0xcc build/default/production/freertos/tasks.o
-                0x000000000000160e                vTaskSwitchContext
+                0x0000000000000baa       0xcc build/default/production/freertos/tasks.o
+                0x0000000000000baa                vTaskSwitchContext
 
 .text.vPortYieldFromTick
-                0x00000000000016da       0xb8
+                0x0000000000000c76       0xb8
  .text.vPortYieldFromTick
-                0x00000000000016da       0xb8 build/default/production/freertos/port.o
-                0x00000000000016da                vPortYieldFromTick
+                0x0000000000000c76       0xb8 build/default/production/freertos/port.o
+                0x0000000000000c76                vPortYieldFromTick
 
-.text           0x0000000000001792       0x7a
- .text          0x0000000000001792       0x7a d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
-                0x0000000000001792                __floatunsisf
-                0x0000000000001796                __floatsisf
+.text.main      0x0000000000000d2e       0xb2
+ .text.main     0x0000000000000d2e       0xb2 build/default/production/main.o
+                0x0000000000000d2e                main
 
-.text.init_UART_Async
-                0x000000000000180c       0x6c
- .text.init_UART_Async
-                0x000000000000180c       0x6c build/default/production/MY_UART.o
-                0x000000000000180c                init_UART_Async
+.text           0x0000000000000de0       0x7a
+ .text          0x0000000000000de0       0x7a d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(floatsisf.o)
+                0x0000000000000de0                __floatunsisf
+                0x0000000000000de4                __floatsisf
 
-.text           0x0000000000001878       0x5e
- .text          0x0000000000001878       0x5e d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
-                0x0000000000001878                __fixunssfsi
+.text           0x0000000000000e5a       0x5e
+ .text          0x0000000000000e5a       0x5e d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixunssfsi.o)
+                0x0000000000000e5a                __fixunssfsi
 
 .text.init_Timer0_WithOCR0
-                0x00000000000018d6       0x52
+                0x0000000000000eb8       0x52
  .text.init_Timer0_WithOCR0
-                0x00000000000018d6       0x52 build/default/production/My_TimerCounter.o
-                0x00000000000018d6                init_Timer0_WithOCR0
+                0x0000000000000eb8       0x52 build/default/production/My_TimerCounter.o
+                0x0000000000000eb8                init_Timer0_WithOCR0
 
-.text           0x0000000000001928       0x48
- .text          0x0000000000001928       0x48 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
-                0x0000000000001928                __fp_cmp
+.text           0x0000000000000f0a       0x48
+ .text          0x0000000000000f0a       0x48 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_cmp.o)
+                0x0000000000000f0a                __fp_cmp
 
-.text.__vector_5
-                0x0000000000001970       0x44
- .text.__vector_5
-                0x0000000000001970       0x44 build/default/production/main.o
-                0x0000000000001970                __vector_5
-
-.text           0x00000000000019b4       0x44
- .text          0x00000000000019b4       0x44 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
-                0x00000000000019b4                __fp_split3
-                0x00000000000019c4                __fp_splitA
+.text           0x0000000000000f52       0x44
+ .text          0x0000000000000f52       0x44 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_split3.o)
+                0x0000000000000f52                __fp_split3
+                0x0000000000000f62                __fp_splitA
 
 .text.libgcc.div
-                0x00000000000019f8       0x44
+                0x0000000000000f96       0x44
  .text.libgcc.div
-                0x00000000000019f8       0x44 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000000000019f8                __udivmodsi4
+                0x0000000000000f96       0x44 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000000000000f96                __udivmodsi4
 
 .text.Timer0_setMode
-                0x0000000000001a3c       0x3e
+                0x0000000000000fda       0x3e
  .text.Timer0_setMode
-                0x0000000000001a3c       0x3e build/default/production/My_TimerCounter.o
-                0x0000000000001a3c                Timer0_setMode
-
-.text.Timer2_setMode
-                0x0000000000001a7a       0x3e
- .text.Timer2_setMode
-                0x0000000000001a7a       0x3e build/default/production/My_TimerCounter.o
-                0x0000000000001a7a                Timer2_setMode
+                0x0000000000000fda       0x3e build/default/production/My_TimerCounter.o
+                0x0000000000000fda                Timer0_setMode
 
 .text.I2C_Start_Wait
-                0x0000000000001ab8       0x3c
+                0x0000000000001018       0x3c
  .text.I2C_Start_Wait
-                0x0000000000001ab8       0x3c build/default/production/mpu_i2c.o
-                0x0000000000001ab8                I2C_Start_Wait
+                0x0000000000001018       0x3c build/default/production/mpu_i2c.o
+                0x0000000000001018                I2C_Start_Wait
 
 .text.I2C_Repeated_Start
-                0x0000000000001af4       0x3a
+                0x0000000000001054       0x3a
  .text.I2C_Repeated_Start
-                0x0000000000001af4       0x3a build/default/production/mpu_i2c.o
-                0x0000000000001af4                I2C_Repeated_Start
+                0x0000000000001054       0x3a build/default/production/mpu_i2c.o
+                0x0000000000001054                I2C_Repeated_Start
 
 .text.prvResetNextTaskUnblockTime
-                0x0000000000001b2e       0x38
+                0x000000000000108e       0x38
  .text.prvResetNextTaskUnblockTime
-                0x0000000000001b2e       0x38 build/default/production/freertos/tasks.o
-
-.text.libgcc.prologue
-                0x0000000000001b66       0x38
- .text.libgcc.prologue
-                0x0000000000001b66       0x38 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_prologue.o)
-                0x0000000000001b66                __prologue_saves__
-
-.text.libgcc.prologue
-                0x0000000000001b9e       0x36
- .text.libgcc.prologue
-                0x0000000000001b9e       0x36 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_epilogue.o)
-                0x0000000000001b9e                __epilogue_restores__
+                0x000000000000108e       0x38 build/default/production/freertos/tasks.o
 
 .text.libgcc.div
-                0x0000000000001bd4       0x2e
+                0x00000000000010c6       0x2e
  .text.libgcc.div
-                0x0000000000001bd4       0x2e d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
-                0x0000000000001bd4                __divmodsi4
+                0x00000000000010c6       0x2e d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
+                0x00000000000010c6                __divmodsi4
 
 .text.MPU6050_init
-                0x0000000000001c02       0x2c
+                0x00000000000010f4       0x2c
  .text.MPU6050_init
-                0x0000000000001c02       0x2c build/default/production/MY_MPU.o
-                0x0000000000001c02                MPU6050_init
+                0x00000000000010f4       0x2c build/default/production/MY_MPU.o
+                0x00000000000010f4                MPU6050_init
+
+.text.uart_send_str
+                0x0000000000001120       0x2a
+ .text.uart_send_str
+                0x0000000000001120       0x2a build/default/production/MY_UART.o
+                0x0000000000001120                uart_send_str
 
 .text.libgcc.div
-                0x0000000000001c2e       0x28
+                0x000000000000114a       0x28
  .text.libgcc.div
-                0x0000000000001c2e       0x28 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
-                0x0000000000001c2e                __udivmodhi4
+                0x000000000000114a       0x28 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodhi4.o)
+                0x000000000000114a                __udivmodhi4
 
 .text.libgcc.div
-                0x0000000000001c56       0x28
+                0x0000000000001172       0x28
  .text.libgcc.div
-                0x0000000000001c56       0x28 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
-                0x0000000000001c56                _div
-                0x0000000000001c56                __divmodhi4
+                0x0000000000001172       0x28 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodhi4.o)
+                0x0000000000001172                _div
+                0x0000000000001172                __divmodhi4
 
 .text.MPU6050_writeRegister
-                0x0000000000001c7e       0x24
+                0x000000000000119a       0x24
  .text.MPU6050_writeRegister
-                0x0000000000001c7e       0x24 build/default/production/MY_MPU.o
+                0x000000000000119a       0x24 build/default/production/MY_MPU.o
 
 .text.initAngleState
-                0x0000000000001ca2       0x24
+                0x00000000000011be       0x24
  .text.initAngleState
-                0x0000000000001ca2       0x24 build/default/production/MY_MPU.o
-                0x0000000000001ca2                initAngleState
+                0x00000000000011be       0x24 build/default/production/MY_MPU.o
+                0x00000000000011be                initAngleState
 
 .text.I2C_Write
-                0x0000000000001cc6       0x24
+                0x00000000000011e2       0x24
  .text.I2C_Write
-                0x0000000000001cc6       0x24 build/default/production/mpu_i2c.o
-                0x0000000000001cc6                I2C_Write
+                0x00000000000011e2       0x24 build/default/production/mpu_i2c.o
+                0x00000000000011e2                I2C_Write
 
-.text.initNormalMode_Timer_Counter2
-                0x0000000000001cea       0x24
- .text.initNormalMode_Timer_Counter2
-                0x0000000000001cea       0x24 build/default/production/My_TimerCounter.o
-                0x0000000000001cea                initNormalMode_Timer_Counter2
-
-.text           0x0000000000001d0e       0x22
- .text          0x0000000000001d0e       0x22 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
-                0x0000000000001d0e                __fp_round
-
-.text.Set_StopBitsNum_U
-                0x0000000000001d30       0x20
- .text.Set_StopBitsNum_U
-                0x0000000000001d30       0x20 build/default/production/MY_UART.o
-                0x0000000000001d30                Set_StopBitsNum_U
-
-.text.UART_SEND_STR
-                0x0000000000001d50       0x1e
- .text.UART_SEND_STR
-                0x0000000000001d50       0x1e build/default/production/MY_UART.o
-                0x0000000000001d50                UART_SEND_STR
+.text           0x0000000000001206       0x22
+ .text          0x0000000000001206       0x22 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_round.o)
+                0x0000000000001206                __fp_round
 
 .text.Timer0_setClk
-                0x0000000000001d6e       0x16
+                0x0000000000001228       0x16
  .text.Timer0_setClk
-                0x0000000000001d6e       0x16 build/default/production/My_TimerCounter.o
-                0x0000000000001d6e                Timer0_setClk
+                0x0000000000001228       0x16 build/default/production/My_TimerCounter.o
+                0x0000000000001228                Timer0_setClk
 
-.text.Timer2_setClk
-                0x0000000000001d84       0x16
- .text.Timer2_setClk
-                0x0000000000001d84       0x16 build/default/production/My_TimerCounter.o
-                0x0000000000001d84                Timer2_setClk
-
-.text.exit      0x0000000000001d9a       0x16
- .text.exit     0x0000000000001d9a       0x16 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
-                0x0000000000001d9a                exit
+.text.exit      0x000000000000123e       0x16
+ .text.exit     0x000000000000123e       0x16 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
+                0x000000000000123e                exit
 
 .text.MPU_Start_Loc
-                0x0000000000001db0       0x14
+                0x0000000000001254       0x14
  .text.MPU_Start_Loc
-                0x0000000000001db0       0x14 build/default/production/MY_MPU.o
-                0x0000000000001db0                MPU_Start_Loc
-
-.text.RX_TX_MODE
-                0x0000000000001dc4       0x10
- .text.RX_TX_MODE
-                0x0000000000001dc4       0x10 build/default/production/MY_UART.o
-                0x0000000000001dc4                RX_TX_MODE
-
-.text.UART_SEND
-                0x0000000000001dd4       0x10
- .text.UART_SEND
-                0x0000000000001dd4       0x10 build/default/production/MY_UART.o
-                0x0000000000001dd4                UART_SEND
+                0x0000000000001254       0x14 build/default/production/MY_MPU.o
+                0x0000000000001254                MPU_Start_Loc
 
 .text.libgcc.div
-                0x0000000000001de4       0x10
+                0x0000000000001268       0x10
  .text.libgcc.div
-                0x0000000000001de4       0x10 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
-                0x0000000000001de4                __negsi2
+                0x0000000000001268       0x10 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
+                0x0000000000001268                __negsi2
 
 .text.I2C_Read_Ack
-                0x0000000000001df4        0xe
+                0x0000000000001278        0xe
  .text.I2C_Read_Ack
-                0x0000000000001df4        0xe build/default/production/mpu_i2c.o
-                0x0000000000001df4                I2C_Read_Ack
+                0x0000000000001278        0xe build/default/production/mpu_i2c.o
+                0x0000000000001278                I2C_Read_Ack
 
 .text.I2C_Read_Nack
-                0x0000000000001e02        0xe
+                0x0000000000001286        0xe
  .text.I2C_Read_Nack
-                0x0000000000001e02        0xe build/default/production/mpu_i2c.o
-                0x0000000000001e02                I2C_Read_Nack
+                0x0000000000001286        0xe build/default/production/mpu_i2c.o
+                0x0000000000001286                I2C_Read_Nack
 
-.text           0x0000000000001e10        0xe
- .text          0x0000000000001e10        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
-                0x0000000000001e10                __subsf3
-                0x0000000000001e12                __addsf3
+.text           0x0000000000001294        0xe
+ .text          0x0000000000001294        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(addsf3.o)
+                0x0000000000001294                __subsf3
+                0x0000000000001296                __addsf3
 
-.text           0x0000000000001e1e        0xe
- .text          0x0000000000001e1e        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
-                0x0000000000001e1e                __fixsfsi
+.text           0x00000000000012a2        0xe
+ .text          0x00000000000012a2        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fixsfsi.o)
+                0x00000000000012a2                __fixsfsi
 
-.text           0x0000000000001e2c        0xe
- .text          0x0000000000001e2c        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
-                0x0000000000001e2c                __fp_pscA
+.text           0x00000000000012b0        0xe
+ .text          0x00000000000012b0        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscA.o)
+                0x00000000000012b0                __fp_pscA
 
-.text           0x0000000000001e3a        0xe
- .text          0x0000000000001e3a        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
-                0x0000000000001e3a                __fp_pscB
+.text           0x00000000000012be        0xe
+ .text          0x00000000000012be        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_pscB.o)
+                0x00000000000012be                __fp_pscB
 
-.text           0x0000000000001e48        0xe
- .text          0x0000000000001e48        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
-                0x0000000000001e48                __fp_zero
-                0x0000000000001e4a                __fp_szero
+.text           0x00000000000012cc        0xe
+ .text          0x00000000000012cc        0xe d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_zero.o)
+                0x00000000000012cc                __fp_zero
+                0x00000000000012ce                __fp_szero
 
-.text.I2C_Stop  0x0000000000001e56        0xc
+.text.I2C_Stop  0x00000000000012da        0xc
  .text.I2C_Stop
-                0x0000000000001e56        0xc build/default/production/mpu_i2c.o
-                0x0000000000001e56                I2C_Stop
+                0x00000000000012da        0xc build/default/production/mpu_i2c.o
+                0x00000000000012da                I2C_Stop
 
-.text           0x0000000000001e62        0xc
- .text          0x0000000000001e62        0xc d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
-                0x0000000000001e62                __fp_inf
+.text           0x00000000000012e6        0xc
+ .text          0x00000000000012e6        0xc d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_inf.o)
+                0x00000000000012e6                __fp_inf
 
 .text.MPU6050_setSampleRate
-                0x0000000000001e6e        0xa
+                0x00000000000012f2        0xa
  .text.MPU6050_setSampleRate
-                0x0000000000001e6e        0xa build/default/production/MY_MPU.o
-                0x0000000000001e6e                MPU6050_setSampleRate
+                0x00000000000012f2        0xa build/default/production/MY_MPU.o
+                0x00000000000012f2                MPU6050_setSampleRate
 
 .text.MPU6050_setClockSource
-                0x0000000000001e78        0xa
+                0x00000000000012fc        0xa
  .text.MPU6050_setClockSource
-                0x0000000000001e78        0xa build/default/production/MY_MPU.o
-                0x0000000000001e78                MPU6050_setClockSource
+                0x00000000000012fc        0xa build/default/production/MY_MPU.o
+                0x00000000000012fc                MPU6050_setClockSource
 
 .text.MPU6050_setGyroConfig
-                0x0000000000001e82        0xa
+                0x0000000000001306        0xa
  .text.MPU6050_setGyroConfig
-                0x0000000000001e82        0xa build/default/production/MY_MPU.o
-                0x0000000000001e82                MPU6050_setGyroConfig
+                0x0000000000001306        0xa build/default/production/MY_MPU.o
+                0x0000000000001306                MPU6050_setGyroConfig
 
 .text.MPU6050_setAccelConfig
-                0x0000000000001e8c        0xa
+                0x0000000000001310        0xa
  .text.MPU6050_setAccelConfig
-                0x0000000000001e8c        0xa build/default/production/MY_MPU.o
-                0x0000000000001e8c                MPU6050_setAccelConfig
+                0x0000000000001310        0xa build/default/production/MY_MPU.o
+                0x0000000000001310                MPU6050_setAccelConfig
 
 .text.Timer0_waitCTC
-                0x0000000000001e96        0xa
+                0x000000000000131a        0xa
  .text.Timer0_waitCTC
-                0x0000000000001e96        0xa build/default/production/My_TimerCounter.o
-                0x0000000000001e96                Timer0_waitCTC
+                0x000000000000131a        0xa build/default/production/My_TimerCounter.o
+                0x000000000000131a                Timer0_waitCTC
 
-.text           0x0000000000001ea0        0xa
- .text          0x0000000000001ea0        0xa d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(gesf2.o)
-                0x0000000000001ea0                __gesf2
-                0x0000000000001ea0                __gtsf2
+.text           0x0000000000001324        0xa
+ .text          0x0000000000001324        0xa d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(gesf2.o)
+                0x0000000000001324                __gesf2
+                0x0000000000001324                __gtsf2
 
-.text.I2C_Init  0x0000000000001eaa        0x8
+.text.uart_send_char
+                0x000000000000132e        0x8
+ .text.uart_send_char
+                0x000000000000132e        0x8 build/default/production/MY_UART.o
+                0x000000000000132e                uart_send_char
+
+.text.I2C_Init  0x0000000000001336        0x8
  .text.I2C_Init
-                0x0000000000001eaa        0x8 build/default/production/mpu_i2c.o
-                0x0000000000001eaa                I2C_Init
+                0x0000000000001336        0x8 build/default/production/mpu_i2c.o
+                0x0000000000001336                I2C_Init
 
 .text.Timer0_INT_EN_TOVF
-                0x0000000000001eb2        0x8
+                0x000000000000133e        0x8
  .text.Timer0_INT_EN_TOVF
-                0x0000000000001eb2        0x8 build/default/production/My_TimerCounter.o
-                0x0000000000001eb2                Timer0_INT_EN_TOVF
+                0x000000000000133e        0x8 build/default/production/My_TimerCounter.o
+                0x000000000000133e                Timer0_INT_EN_TOVF
 
 .text.Timer0_INT_EN_OCM
-                0x0000000000001eba        0x8
+                0x0000000000001346        0x8
  .text.Timer0_INT_EN_OCM
-                0x0000000000001eba        0x8 build/default/production/My_TimerCounter.o
-                0x0000000000001eba                Timer0_INT_EN_OCM
+                0x0000000000001346        0x8 build/default/production/My_TimerCounter.o
+                0x0000000000001346                Timer0_INT_EN_OCM
 
-.text.Timer2_INT_EN_TOVF
-                0x0000000000001ec2        0x8
- .text.Timer2_INT_EN_TOVF
-                0x0000000000001ec2        0x8 build/default/production/My_TimerCounter.o
-                0x0000000000001ec2                Timer2_INT_EN_TOVF
+.text           0x000000000000134e        0x8
+ .text          0x000000000000134e        0x8 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
+                0x000000000000134e                __divsf3
 
-.text           0x0000000000001eca        0x8
- .text          0x0000000000001eca        0x8 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(divsf3.o)
-                0x0000000000001eca                __divsf3
-
-.text           0x0000000000001ed2        0x8
- .text          0x0000000000001ed2        0x8 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
-                0x0000000000001ed2                __mulsf3
+.text           0x0000000000001356        0x8
+ .text          0x0000000000001356        0x8 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(mulsf3.o)
+                0x0000000000001356                __mulsf3
 
 .text.__vector_7
-                0x0000000000001eda        0x6
+                0x000000000000135e        0x6
  .text.__vector_7
-                0x0000000000001eda        0x6 build/default/production/freertos/port.o
-                0x0000000000001eda                __vector_7
+                0x000000000000135e        0x6 build/default/production/freertos/port.o
+                0x000000000000135e                __vector_7
 
-.text.WAIT_UNTIL_UDRisNOT_EMPTY
-                0x0000000000001ee0        0x6
- .text.WAIT_UNTIL_UDRisNOT_EMPTY
-                0x0000000000001ee0        0x6 build/default/production/MY_UART.o
-                0x0000000000001ee0                WAIT_UNTIL_UDRisNOT_EMPTY
+.text           0x0000000000001364        0x6
+ .text          0x0000000000001364        0x6 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
+                0x0000000000001364                __fp_nan
 
-.text.SetBaudRate_U
-                0x0000000000001ee6        0x6
- .text.SetBaudRate_U
-                0x0000000000001ee6        0x6 build/default/production/MY_UART.o
-                0x0000000000001ee6                SetBaudRate_U
+.text           0x000000000000136a        0x4
+ .text          0x000000000000136a        0x4 D:/Mplabx/packs/Microchip/ATmega_DFP/3.1.264/xc8/avr/lib/avr5/crtatmega32a.o
+                0x000000000000136a                __vector_1
+                0x000000000000136a                __vector_12
+                0x000000000000136a                __bad_interrupt
+                0x000000000000136a                __vector_6
+                0x000000000000136a                __vector_3
+                0x000000000000136a                __vector_11
+                0x000000000000136a                __vector_13
+                0x000000000000136a                __vector_17
+                0x000000000000136a                __vector_19
+                0x000000000000136a                __vector_5
+                0x000000000000136a                __vector_4
+                0x000000000000136a                __vector_9
+                0x000000000000136a                __vector_2
+                0x000000000000136a                __vector_15
+                0x000000000000136a                __vector_8
+                0x000000000000136a                __vector_14
+                0x000000000000136a                __vector_10
+                0x000000000000136a                __vector_16
+                0x000000000000136a                __vector_18
+                0x000000000000136a                __vector_20
 
-.text           0x0000000000001eec        0x6
- .text          0x0000000000001eec        0x6 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fp_nan.o)
-                0x0000000000001eec                __fp_nan
-
-.text           0x0000000000001ef2        0x4
- .text          0x0000000000001ef2        0x4 D:/Mplabx/packs/Microchip/ATmega_DFP/3.1.264/xc8/avr/lib/avr5/crtatmega32a.o
-                0x0000000000001ef2                __vector_1
-                0x0000000000001ef2                __vector_12
-                0x0000000000001ef2                __bad_interrupt
-                0x0000000000001ef2                __vector_6
-                0x0000000000001ef2                __vector_3
-                0x0000000000001ef2                __vector_11
-                0x0000000000001ef2                __vector_13
-                0x0000000000001ef2                __vector_17
-                0x0000000000001ef2                __vector_19
-                0x0000000000001ef2                __vector_4
-                0x0000000000001ef2                __vector_9
-                0x0000000000001ef2                __vector_2
-                0x0000000000001ef2                __vector_15
-                0x0000000000001ef2                __vector_8
-                0x0000000000001ef2                __vector_14
-                0x0000000000001ef2                __vector_10
-                0x0000000000001ef2                __vector_16
-                0x0000000000001ef2                __vector_18
-                0x0000000000001ef2                __vector_20
-
-.text.RXF_INT_EN
-                0x0000000000001ef6        0x4
- .text.RXF_INT_EN
-                0x0000000000001ef6        0x4 build/default/production/MY_UART.o
-                0x0000000000001ef6                RXF_INT_EN
-
-.text.fabsf     0x0000000000001efa        0x4
- .text.fabsf    0x0000000000001efa        0x4 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libm.a(fabsf.o)
-                0x0000000000001efa                fabsf
-
-.text._Exit     0x0000000000001efe        0x4
- .text._Exit    0x0000000000001efe        0x4 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(_Exit.o)
-                0x0000000000001efe                _Exit
+.text._Exit     0x000000000000136e        0x4
+ .text._Exit    0x000000000000136e        0x4 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(_Exit.o)
+                0x000000000000136e                _Exit
 
 .text.__dummy_fini
-                0x0000000000001f02        0x2
+                0x0000000000001372        0x2
  .text.__dummy_fini
-                0x0000000000001f02        0x2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
-                0x0000000000001f02                _fini
+                0x0000000000001372        0x2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
+                0x0000000000001372                _fini
 
 .text.__dummy_funcs_on_exit
-                0x0000000000001f04        0x2
+                0x0000000000001374        0x2
  .text.__dummy_funcs_on_exit
-                0x0000000000001f04        0x2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
-                0x0000000000001f04                __funcs_on_exit
+                0x0000000000001374        0x2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
+                0x0000000000001374                __funcs_on_exit
 
 .text.__dummy_simulator_exit
-                0x0000000000001f06        0x2
+                0x0000000000001376        0x2
  .text.__dummy_simulator_exit
-                0x0000000000001f06        0x2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
-                0x0000000000001f06                __simulator_exit
+                0x0000000000001376        0x2 d:/mplabx/xc8/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(exit.o)
+                0x0000000000001376                __simulator_exit

@@ -1,35 +1,9 @@
 #include "MY_UART.h"
+#include "int_to_arr.h"
 #include "DIO.h"
 #include <math.h> 
 #include <stdio.h> 
 #include <string.h>
-
-void reverse(char s[]) {
-    int i, j;
-    char c;
-
-    for (i = 0, j = strlen(s) - 1; i < j; i++, j--) {
-        c = s[i];
-        s[i] = s[j];
-        s[j] = c;
-    }
-}
-
-// Provided itoa function
-void itoa(int n, char s[]) {
-    int i, sign;
-
-    if ((sign = n) < 0) /* record sign */
-        n = -n; /* make n positive */
-    i = 0;
-    do { /* generate digits in reverse order */
-        s[i++] = n % 10 + '0'; /* get next digit */
-    } while ((n /= 10) > 0); /* delete it */
-    if (sign < 0)
-        s[i++] = '-';
-    s[i] = '\0';
-    reverse(s);
-}
 
 /**
  * 
@@ -61,7 +35,7 @@ void init_uart(char clk_mode, int baud) {
         case MASTER_SYN:
             UCSRA &= ~(1 << U2X);
             UCSRC = (UCSRC | (1 << URSEL)) | (1 << UMSEL);
-            set_pin_dir('B', XCK, OUT);
+            setPIN_dir(B, XCK, OUT);
             _delay_ms(5);
             UBRR = (F_CPU / 2.0 / baud) - 1;
             //    SET BAUD RATE
@@ -71,7 +45,7 @@ void init_uart(char clk_mode, int baud) {
         case SLAVE_SYN:
             UCSRA &= ~(1 << U2X);
             UCSRC = (UCSRC | (1 << URSEL)) | (1 << UMSEL);
-            set_pin_dir('B', XCK, IN);
+            setPIN_dir(B, XCK, IN);
             _delay_ms(5);
             //            UBRR = (F_CPU / 2.0 / baud) - 1;
             //            //    SET BAUD RATE
