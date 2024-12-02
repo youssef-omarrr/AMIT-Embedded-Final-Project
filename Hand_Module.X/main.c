@@ -45,7 +45,7 @@ void formatSignalMsg(const AngleState* state, char* frame) {
     int i = 0;
 
     // Add "-("
-    frame[i++] = '-';
+    frame[i++] = '<';
     frame[i++] = '(';
 
     // Add direction
@@ -76,7 +76,7 @@ void formatSignalMsg(const AngleState* state, char* frame) {
 
     // Add ")-"
     frame[i++] = ')';
-    frame[i++] = '-';
+    frame[i++] = '>';
 
     // Null-terminate the frame string
     frame[i] = '\0';
@@ -84,9 +84,10 @@ void formatSignalMsg(const AngleState* state, char* frame) {
 
 int main(void) {
     // Initialize communication
-    init_uart(9600, ASYN);
+    init_uart(ASYN , 9600);
+    uart_send_str("hello \r");
     I2C_Init();
-    // Initialize sensor data arrays
+//     Initialize sensor data arrays
     float acc[3] = {0};
     float gyro[3] = {0};
     float gyro_offset[3] = {0};
@@ -94,15 +95,16 @@ int main(void) {
     // Initialize angle state
     AngleState angle_state;
 
-    initAngleState(&angle_state);
+//    initAngleState(&angle_state);
 
     // Initialize and calibrate MPU6050
-    MPU6050_init();
-    MPU6050_calibrate(gyro_offset);
+//    MPU6050_init();
+//    MPU6050_calibrate(gyro_offset);
 
     // Initialize timer for 1ms intervals
     init_Timer0_WithOCR0(CTC_MODE, TIMER0_MC_CLK_64, 124);
     while (1) {
+        _delay_ms(50);
         //        Read_RawValue(acc, gyro);
         //        updateAngles(&angle_state, acc, gyro, gyro_offset);
         angle_state.angles[0] = 10;
@@ -112,6 +114,7 @@ int main(void) {
         formatSignalMsg(&angle_state, frame);
 
         uart_send_str(frame);
+        uart_send_char('\r');
         Timer0_waitCTC();
     }
 }
