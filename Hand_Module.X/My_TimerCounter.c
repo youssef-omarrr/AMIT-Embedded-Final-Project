@@ -129,7 +129,7 @@ void init_Timer0_WithOCR0(char Mode, char clk, char OCR0_Val) {
 
     case PWM_MODE:
     case CTC_MODE:
-        Timer0_INT_EN_OCM();
+//        Timer0_INT_EN_OCM();
         break;
 
     default:

@@ -84,7 +84,7 @@ void uart_send_char(char data) {
 void uart_send_str(char *pData) {
     for (int i = 0; pData[i] != '\0'; ++i) {
         uart_send_char(pData[i]);
-        _delay_ms(10);
+        _delay_ms(50);
     }
 }
 
@@ -93,6 +93,8 @@ char uart_receive_data() {
 
     while (!(UCSRA & (1 << RXC)));
 
+    if(UCSRA & ((1<<FE)||(1<<DOR)||(1<<2)))
+        return 0;
     char data = UDR;
     return data;
 }

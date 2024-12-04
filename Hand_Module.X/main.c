@@ -10,6 +10,18 @@
 #include "mpu_i2c.h"
 #include "My_TimerCounter.h"
 
+static int counter = 0;
+char frame[15] = {'A'};
+
+ISR(TIMER2_OVF_vect){
+    counter++;
+    if (counter >= 62){
+        uart_send_str(frame);
+        counter = 0;
+    }
+}
+
+
 // Function to format and send angle data over UART for Debugging
 
 static void sendAngleData(const AngleState* state) {
@@ -44,7 +56,7 @@ void formatSignalMsg(const AngleState* state, char* frame) {
     char speed_str[4]; // Enough to hold "255" + null terminator
     int i = 0;
 
-    // Add "-("
+    // Add "<("
     frame[i++] = '<';
     frame[i++] = '(';
 
@@ -74,7 +86,7 @@ void formatSignalMsg(const AngleState* state, char* frame) {
         frame[i++] = speed_str[j];
     }
 
-    // Add ")-"
+    // Add ")>"
     frame[i++] = ')';
     frame[i++] = '>';
 
@@ -84,37 +96,33 @@ void formatSignalMsg(const AngleState* state, char* frame) {
 
 int main(void) {
     // Initialize communication
-    init_uart(ASYN , 9600);
-    uart_send_str("hello \r");
+    init_uart(ASYN, 9600);
+    uart_send_str("hello");
     I2C_Init();
-//     Initialize sensor data arrays
+//    //     Initialize sensor data arrays
     float acc[3] = {0};
     float gyro[3] = {0};
     float gyro_offset[3] = {0};
-    char frame[15];
-    // Initialize angle state
+    
+    //// Initialize angle state
     AngleState angle_state;
 
-//    initAngleState(&angle_state);
+    //  //  initAngleState(&angle_state);
 
-    // Initialize and calibrate MPU6050
-//    MPU6050_init();
-//    MPU6050_calibrate(gyro_offset);
+    //  // Initialize and calibrate MPU6050
+    MPU6050_init();
+    MPU6050_calibrate(gyro_offset);
 
-    // Initialize timer for 1ms intervals
+    //  // Initialize timer for 1ms intervals
     init_Timer0_WithOCR0(CTC_MODE, TIMER0_MC_CLK_64, 124);
+    
+    initNormalMode_Timer_Counter2(TIMER2_MC_CLK_1024);
+    TWCR &= ~(1<<TWIE);
+    sei();
     while (1) {
-        _delay_ms(50);
-        //        Read_RawValue(acc, gyro);
-        //        updateAngles(&angle_state, acc, gyro, gyro_offset);
-        angle_state.angles[0] = 10;
-        angle_state.angles[1] = 20;
-        angle_state.angles[2] = 30;
-
+        Read_RawValue(acc, gyro);
+        updateAngles(&angle_state, acc, gyro, gyro_offset);
         formatSignalMsg(&angle_state, frame);
-
-        uart_send_str(frame);
-        uart_send_char('\r');
         Timer0_waitCTC();
     }
 }
