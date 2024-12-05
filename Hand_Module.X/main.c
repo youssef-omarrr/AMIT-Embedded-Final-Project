@@ -97,7 +97,7 @@ void formatSignalMsg(const AngleState* state, char* frame) {
 int main(void) {
     // Initialize communication
     init_uart(ASYN, 9600);
-    uart_send_str("hello");
+//    uart_send_str("hello");
     I2C_Init();
 //    //     Initialize sensor data arrays
     float acc[3] = {0};

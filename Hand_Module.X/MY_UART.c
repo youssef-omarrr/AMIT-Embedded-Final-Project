@@ -93,7 +93,7 @@ char uart_receive_data() {
 
     while (!(UCSRA & (1 << RXC)));
 
-    if(UCSRA & ((1<<FE)||(1<<DOR)||(1<<2)))
+    if(UCSRA & ((1<<FE)|(1<<DOR)|(1<<2)))
         return 0;
     char data = UDR;
     return data;
