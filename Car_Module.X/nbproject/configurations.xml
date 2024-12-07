@@ -9,6 +9,8 @@
       <itemPath>DIO.h</itemPath>
       <itemPath>motor_driver.h</itemPath>
       <itemPath>mtimer.h</itemPath>
+      <itemPath>mPARSING.h</itemPath>
+      <itemPath>mHEADERS.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -28,6 +30,7 @@
       <itemPath>DIO.c</itemPath>
       <itemPath>motor_driver.c</itemPath>
       <itemPath>mtimer.c</itemPath>
+      <itemPath>mPARSING.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
