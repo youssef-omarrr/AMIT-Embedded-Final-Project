@@ -178,35 +178,48 @@ void updateAngles(AngleState* state, const float acc[3], const float gyro[3], co
         adjusted_gyro[i] = gyro[i] - gyro_offset[i];
     }
     
-    // Integrate gyro rates to get angles
+    // SSF_GYRO: Sensitivity Scale Factor of the gyro from DataSheet
+    // FREQ: Sampling frequency 1000HZ
+    
+    // Integrate gyroscope rates to estimate angular changes (in degrees)
+    // for roll (X) and pitch (Y).
+    // This converts angular velocity to angle using the formula:
+    // angle += rate / (frequency * sensitivity) [Definition]
+    
     state->gyro_angles[X] += (adjusted_gyro[X] / (FREQ * SSF_GYRO));
     state->gyro_angles[Y] += (adjusted_gyro[Y] / (FREQ * SSF_GYRO));
     
-    // Compensate for roll-pitch coupling during yaw
-    float yaw_factor = sin(adjusted_gyro[Z] * (PI / (FREQ * SSF_GYRO * 180)));
-    state->gyro_angles[Y] += state->gyro_angles[X] * yaw_factor;
-    state->gyro_angles[X] -= state->gyro_angles[Y] * yaw_factor;
+    // Compensate for roll-pitch coupling caused by yaw motion.
+    // The compensation uses a small-angle approximation based on the yaw rate.
     
-    // Calculate total acceleration vector magnitude
+    float yaw_factor = sin(adjusted_gyro[Z] * (PI / (FREQ * SSF_GYRO * 180)));
+    state->gyro_angles[Y] += state->gyro_angles[X] * yaw_factor;// Add cross-coupled effect to pitch
+    state->gyro_angles[X] -= state->gyro_angles[Y] * yaw_factor;// Subtract cross-coupled effect from roll
+    
+    // Calculate the total acceleration vector magnitude.
+    // Used for deriving angles based on accelerometer readings.
     float acc_total_vector = sqrt((acc[X] * acc[X]) + 
                                 (acc[Y] * acc[Y]) + 
                                 (acc[Z] * acc[Z]));
     
-    // Calculate accelerometer-based angles
+    // Calculate accelerometer-derived angles for roll and pitch.
+    // Only valid when the acceleration component along one axis is less than the total vector magnitude.
     if(fabs(acc[X]) < acc_total_vector) {
-        state->acc_angles[X] = asin((float)acc[Y] / acc_total_vector) * (180 / PI);
+        state->acc_angles[X] = asin((float)acc[Y] / acc_total_vector) * (180 / PI);// Roll angle
     }
     if(fabs(acc[Y]) < acc_total_vector) {
-        state->acc_angles[Y] = asin((float)acc[X] / acc_total_vector) * (180 / PI);
+        state->acc_angles[Y] = asin((float)acc[X] / acc_total_vector) * (180 / PI);// Pitch angle
     }
     
-    // Sensor Fusion:Apply complementary filter (96% gyro, 4% accelerometer)
+    // Fuse gyroscope and accelerometer data using a complementary filter.
+    // The filter combines 96% of the gyro data (short-term accuracy) and 4% of the accelerometer data (long-term stability).
     for(int i = 0; i < 2; i++) {
         state->gyro_angles[i] = state->gyro_angles[i] * 0.96 + state->acc_angles[i] * 0.04;
     }
     
-    // Apply final smoothing filter (70% previous, 30% new)
-    state->angles[X] = state->angles[X] * 0.7 + state->gyro_angles[X] * 0.3;
-    state->angles[Y] = state->angles[Y] * 0.7 + state->gyro_angles[Y] * 0.3;
-    state->angles[Z] = -adjusted_gyro[Z] / SSF_GYRO;
+    // Apply a final smoothing filter to reduce noise in the calculated angles.
+    // The filter weighs 70% of the previous angle estimate and 30% of the newly calculated angle.
+    state->angles[X] = state->angles[X] * 0.7 + state->gyro_angles[X] * 0.3;// Smoothed roll
+    state->angles[Y] = state->angles[Y] * 0.7 + state->gyro_angles[Y] * 0.3;// Smoothed pitch
+    state->angles[Z] = -adjusted_gyro[Z] / SSF_GYRO;// Yaw estimation based on gyroscope
 }
