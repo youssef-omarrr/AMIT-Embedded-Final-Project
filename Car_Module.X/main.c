@@ -6,13 +6,6 @@
 // Constants
 #define MPU_DATA_MAX_LEN     20
 
-// Structure to hold motor control data
-typedef struct {
-    char direction;
-    uint8_t speed;
-} MotorData_t;
-
-
 int main(void) {
     // init functions
     init_uart(ASYN, 9600);
