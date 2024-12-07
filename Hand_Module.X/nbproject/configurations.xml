@@ -5,26 +5,6 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>MY_MPU.h</itemPath>
-      <itemPath>freertos/include/atomic.h</itemPath>
-      <itemPath>freertos/include/croutine.h</itemPath>
-      <itemPath>freertos/include/deprecated_definitions.h</itemPath>
-      <itemPath>freertos/include/event_groups.h</itemPath>
-      <itemPath>freertos/include/FreeRTOS.h</itemPath>
-      <itemPath>freertos/include/FreeRTOSConfig.h</itemPath>
-      <itemPath>freertos/include/list.h</itemPath>
-      <itemPath>freertos/include/message_buffer.h</itemPath>
-      <itemPath>freertos/include/mpu_prototypes.h</itemPath>
-      <itemPath>freertos/include/mpu_wrappers.h</itemPath>
-      <itemPath>freertos/include/portable.h</itemPath>
-      <itemPath>freertos/include/portmacro.h</itemPath>
-      <itemPath>freertos/include/projdefs.h</itemPath>
-      <itemPath>freertos/include/queue.h</itemPath>
-      <itemPath>freertos/include/semphr.h</itemPath>
-      <itemPath>freertos/include/stack_macros.h</itemPath>
-      <itemPath>freertos/include/StackMacros.h</itemPath>
-      <itemPath>freertos/include/stream_buffer.h</itemPath>
-      <itemPath>freertos/include/task.h</itemPath>
-      <itemPath>freertos/include/timers.h</itemPath>
       <itemPath>int_to_arr.h</itemPath>
       <itemPath>MY_UART.h</itemPath>
       <itemPath>myI2C.h</itemPath>
@@ -44,15 +24,6 @@
                    projectFiles="true">
       <itemPath>main.c</itemPath>
       <itemPath>MY_MPU.c</itemPath>
-      <itemPath>freertos/croutine.c</itemPath>
-      <itemPath>freertos/event_groups.c</itemPath>
-      <itemPath>freertos/heap_4.c</itemPath>
-      <itemPath>freertos/list.c</itemPath>
-      <itemPath>freertos/port.c</itemPath>
-      <itemPath>freertos/queue.c</itemPath>
-      <itemPath>freertos/stream_buffer.c</itemPath>
-      <itemPath>freertos/tasks.c</itemPath>
-      <itemPath>freertos/timers.c</itemPath>
       <itemPath>MY_UART.c</itemPath>
       <itemPath>DIO.c</itemPath>
       <itemPath>myI2C.c</itemPath>
@@ -75,7 +46,7 @@
         <targetPluginBoard></targetPluginBoard>
         <platformTool>noID</platformTool>
         <languageToolchain>XC8</languageToolchain>
-        <languageToolchainVersion>2.50</languageToolchainVersion>
+        <languageToolchainVersion>2.46</languageToolchainVersion>
         <platform>3</platform>
       </toolsSet>
       <packs>
