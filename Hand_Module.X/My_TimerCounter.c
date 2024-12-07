@@ -129,7 +129,7 @@ void init_Timer0_WithOCR0(char Mode, char clk, char OCR0_Val) {
 
     case PWM_MODE:
     case CTC_MODE:
-//        Timer0_INT_EN_OCM();
+        //        Timer0_INT_EN_OCM();
         break;
 
     default:
@@ -311,17 +311,12 @@ void init_Timer2_WithOCR2(char Mode, char clk, char OCR2_Val) {
  */
 void initNormalMode_Timer_Counter2(char clk) {
 
-
     Timer2_setMode(NORMAL_MODE);
-
-
     Timer2_INT_EN_TOVF();
-
     _delay_ms(10);
-
     Timer2_setClk(clk);
-
-
+    TWCR &= ~(1 << TWIE);
+    
 }
 
 void Timer2_INT_DISABLE_OCM(void) {

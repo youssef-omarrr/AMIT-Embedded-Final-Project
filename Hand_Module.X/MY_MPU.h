@@ -117,7 +117,7 @@
 
 // MPU Calculations Constants
 #define FREQ        1000    // Sampling frequency 
-                            //should edit the timer in the main to match this                                                                                                  
+                            // Should edit the timer in the main to match this                                                                                                  
 
 #define SSF_GYRO    65.5    // Sensitivity Scale Factor of the gyro from datasheet                                                                  
 #define PI  3.14

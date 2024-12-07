@@ -13,16 +13,15 @@
 static int counter = 0;
 char frame[15] = {'A'};
 
-ISR(TIMER2_OVF_vect){
+ISR(TIMER2_OVF_vect) {
     counter++;
-    if (counter >= 62){
+    if (counter >= 62) {
         uart_send_str(frame);
         counter = 0;
     }
 }
 
-
-// Function to format and send angle data over UART for Debugging
+// Utility function to format and send angle data over UART for Debugging
 
 static void sendAngleData(const AngleState* state) {
     char buffer[30];
@@ -33,8 +32,13 @@ static void sendAngleData(const AngleState* state) {
     uart_send_str(buffer);
 }
 
+// main Formmating function to send the data in the format
+// <(direction)(speed)> 
+// direction:W,A,S,D Speed:0-255
+
 void formatSignalMsg(const AngleState* state, char* frame) {
     char direction;
+    char speed_str[4]; // Enough to hold "255" + null terminator
     int speed;
     float absX = fabs(state->angles[X]);
     float absY = fabs(state->angles[Y]);
@@ -53,7 +57,6 @@ void formatSignalMsg(const AngleState* state, char* frame) {
     if (speed < 0) speed = 0;
 
     // Manually construct the frame string
-    char speed_str[4]; // Enough to hold "255" + null terminator
     int i = 0;
 
     // Add "<("
@@ -102,25 +105,27 @@ int main(void) {
     float acc[3] = {0};
     float gyro[3] = {0};
     float gyro_offset[3] = {0};
-    
+
     // Initialize angle state
     AngleState angle_state;
-
-    //  initAngleState(&angle_state);
+    initAngleState(&angle_state);
 
     // Initialize and calibrate MPU6050
     MPU6050_init();
     MPU6050_calibrate(gyro_offset);
 
-    // Initialize timer for 1ms intervals
+    // Initialize timer for 1MS intervals for integration
     init_Timer0_WithOCR0(CTC_MODE, TIMER0_MC_CLK_64, 124);
-    
+
     initNormalMode_Timer_Counter2(TIMER2_MC_CLK_1024);
-    TWCR &= ~(1<<TWIE);
     sei();
+
     while (1) {
+        // Read raw values from the MPU
         Read_RawValue(acc, gyro);
+        // Update the angles and store it in frame
         updateAngles(&angle_state, acc, gyro, gyro_offset);
+        // pre-prepare the frame for UART sending
         formatSignalMsg(&angle_state, frame);
         Timer0_waitCTC();
     }
