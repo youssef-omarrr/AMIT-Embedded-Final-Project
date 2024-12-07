@@ -92,12 +92,10 @@ int main(void) {
     char temp[1];
     while (1) {
         temp[0] = uart_receive_data();
-        LCD4_WRITE(temp[0]);
+//        LCD4_WRITE(temp[0]);
         strcat(mpu_data, temp);
 
         if (temp[0] == '>') {
-//            LCD4_CLEAR();
-//            LCD4_SWRITE(mpu_data);
             if (parse_mpu_data(mpu_data, &motorData)) {
 
                 //print direction and speed on LCD
@@ -129,9 +127,6 @@ int main(void) {
                     stop_motor();
                     break;
                 }
-
-
-                //                LCD4_CLEAR();
             }
             strcpy(mpu_data, "");
         }

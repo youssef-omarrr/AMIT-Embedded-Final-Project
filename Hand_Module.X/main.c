@@ -97,23 +97,22 @@ void formatSignalMsg(const AngleState* state, char* frame) {
 int main(void) {
     // Initialize communication
     init_uart(ASYN, 9600);
-//    uart_send_str("hello");
     I2C_Init();
-//    //     Initialize sensor data arrays
+    //     Initialize sensor data arrays
     float acc[3] = {0};
     float gyro[3] = {0};
     float gyro_offset[3] = {0};
     
-    //// Initialize angle state
+    // Initialize angle state
     AngleState angle_state;
 
-    //  //  initAngleState(&angle_state);
+    //  initAngleState(&angle_state);
 
-    //  // Initialize and calibrate MPU6050
+    // Initialize and calibrate MPU6050
     MPU6050_init();
     MPU6050_calibrate(gyro_offset);
 
-    //  // Initialize timer for 1ms intervals
+    // Initialize timer for 1ms intervals
     init_Timer0_WithOCR0(CTC_MODE, TIMER0_MC_CLK_64, 124);
     
     initNormalMode_Timer_Counter2(TIMER2_MC_CLK_1024);
