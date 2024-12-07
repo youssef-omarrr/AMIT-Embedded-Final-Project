@@ -20,7 +20,7 @@ build/default/production/main.o.d build/default/production/main.o: main.c \
  d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\xc.h \
  d:\mplabx\xc8\avr\lib\gcc\avr\5.4.0\include\cci.h \
  d:\mplabx\xc8\avr\avr\include\avr\builtins.h MY_UART.h mpu_i2c.h \
- My_TimerCounter.h
+ My_TimerCounter.h frame_formatter.h
 
 d:\mplabx\xc8\avr\avr\include\avr\io.h:
 
@@ -73,3 +73,5 @@ MY_UART.h:
 mpu_i2c.h:
 
 My_TimerCounter.h:
+
+frame_formatter.h:

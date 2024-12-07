@@ -9,6 +9,7 @@
       <itemPath>MY_UART.h</itemPath>
       <itemPath>myI2C.h</itemPath>
       <itemPath>My_TimerCounter.h</itemPath>
+      <itemPath>frame_formatter.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"
@@ -30,6 +31,7 @@
       <itemPath>mpu_i2c.c</itemPath>
       <itemPath>int_to_arr.c</itemPath>
       <itemPath>My_TimerCounter.c</itemPath>
+      <itemPath>frame_formatter.c</itemPath>
     </logicalFolder>
   </logicalFolder>
   <sourceRootList>
